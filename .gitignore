@@ -1,0 +1,10 @@
+wp-content/uploads
+wp-config.php
+.idea
+.DS_Store
+.htaccess
+node_modules
+.sass-cache
+.ftpquota
+cgi-bin
+php_errorlog

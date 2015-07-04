@@ -1,0 +1,8 @@
+drwxr-xr-x    3 65270      vusers              8 Oct 17  2013 .
+drwxr-xr-x   11 65270      vusers             69 Jan 13  2014 ..
+-rw-r--r--    1 65270      vusers          12646 Jan 13  2014 handlers.js
+-rw-r--r--    1 65270      vusers           8867 Jan 13  2014 handlers.min.js
+-rw-r--r--    1 65270      vusers           1540 Jan 13  2014 license.txt
+drwxr-xr-x    2 65270      vusers              6 Oct 17  2013 plugins
+-rw-r--r--    1 65270      vusers          37689 Jan 13  2014 swfupload.js
+-rw-r--r--    1 65270      vusers          13133 Jan 13  2014 swfupload.swf

@@ -1,0 +1,15 @@
+drwxr-xr-x    2 65270      vusers             15 Oct 17  2013 .
+drwxr-xr-x   11 65270      vusers             69 Jan 13  2014 ..
+-rw-r--r--    1 65270      vusers          19244 Jan 13  2014 changelog.txt
+-rw-r--r--    1 65270      vusers          15650 Jan 13  2014 handlers.js
+-rw-r--r--    1 65270      vusers          10196 Jan 13  2014 handlers.min.js
+-rw-r--r--    1 65270      vusers          17987 Jan 13  2014 license.txt
+-rw-r--r--    1 65270      vusers           5552 Jan 13  2014 plupload.flash.js
+-rw-r--r--    1 65270      vusers          18958 Jan 13  2014 plupload.flash.swf
+-rw-r--r--    1 65270      vusers           4841 Jan 13  2014 plupload.html4.js
+-rw-r--r--    1 65270      vusers          17946 Jan 13  2014 plupload.html5.js
+-rw-r--r--    1 65270      vusers          11948 Jan 13  2014 plupload.js
+-rw-r--r--    1 65270      vusers           5617 Jan 13  2014 plupload.silverlight.js
+-rw-r--r--    1 65270      vusers          44156 Apr 25  2014 plupload.silverlight.xap
+-rw-r--r--    1 65270      vusers           9805 Jan 13  2014 wp-plupload.js
+-rw-r--r--    1 65270      vusers           4473 Jan 13  2014 wp-plupload.min.js
