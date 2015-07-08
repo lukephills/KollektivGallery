@@ -1,0 +1,14 @@
+drwxr-xr-x    6 65270      vusers             14 Oct 17  2013 .
+drwxr-xr-x   11 65270      vusers             69 Jan 13  2014 ..
+drwxr-xr-x    2 65270      vusers              4 Oct 17  2013 langs
+-rw-r--r--    1 65270      vusers          26427 Jan 13  2014 license.txt
+-rw-r--r--    1 65270      vusers            840 Jan 13  2014 mark_loaded_src.js
+drwxr-xr-x   16 65270      vusers             16 Oct 17  2013 plugins
+drwxr-xr-x    3 65270      vusers              3 Oct 17  2013 themes
+-rw-r--r--    1 65270      vusers         232482 Jan 13  2014 tiny_mce.js
+-rw-r--r--    1 65270      vusers           4908 Jan 13  2014 tiny_mce_popup.js
+drwxr-xr-x    2 65270      vusers              6 Oct 17  2013 utils
+-rw-r--r--    1 65270      vusers          12664 Jan 13  2014 wp-mce-help.php
+-rw-r--r--    1 65270      vusers          30522 Jan 13  2014 wp-tinymce-schema.js
+-rw-r--r--    1 65270      vusers         116265 Jan 13  2014 wp-tinymce.js.gz
+-rw-r--r--    1 65270      vusers           1046 Jan 13  2014 wp-tinymce.php

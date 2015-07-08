@@ -1,0 +1,44 @@
+.manual-content {
+    position: absolute;
+    z-index: $z-index-logo;
+    left: 0;
+    right: 0;
+
+    ::selection {
+        color: $color-dark;
+        background: $color-light;
+    }
+    ::-moz-selection {
+        color: $color-dark;
+        background: $color-light;
+    }
+}
+
+.manual-item {
+    padding: 2em;
+    margin: 0 0 6em;
+
+    .letter {
+        color: $color-light;
+    }
+}
+
+.manual-image {
+    left: 5%;
+    bottom: 45%;
+    transition: opacity 0.4s ease;
+    margin: 1rem;
+
+    overflow: hidden; // For the big block on mobile
+
+    @media #{$large-up} {
+        position: fixed;
+        opacity:0;
+        margin: 0;
+    }
+
+
+    &.selected {
+        opacity: 1;
+    }
+}
