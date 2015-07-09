@@ -1,0 +1,10 @@
+/*
+Theme Name: Kollektiv Legacy
+Author: Luke Phillips
+Author URI: http://femurdesign.com
+Description: Design by Sarah Todd for Kollektiv Gallery
+Version: 1.0.5
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: responsive-layout, white, 
+*/

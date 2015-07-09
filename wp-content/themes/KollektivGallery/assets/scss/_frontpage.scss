@@ -1,0 +1,141 @@
+.home {
+    $circle-size: 300px;
+    .subscribe-container {
+        width: $circle-size - 50px;
+        height: $circle-size - 50px;
+        margin: 5rem auto 2rem;
+
+        @media #{$medium-up} {
+            width: $circle-size;
+            height: $circle-size;
+        }
+
+        .subscribe-inner {
+            float: left;
+            width: 100%;
+            padding: 2.5rem 1rem 0;
+            max-height: 330px;
+            @media #{$medium-up} {
+                padding: 3.5rem 2rem 0;
+            }
+
+            p {
+                color: $color-dark;
+                margin-bottom: 0.25rem;
+                font-size: 0.8rem;
+                @media #{$medium-up} {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+
+
+        label.checkbox, input[type="checkbox"] {
+            display: inline-block;
+            margin: 0;
+        }
+
+    }
+
+    .picture-interview, .manual {
+        margin: 0;
+        padding: 6rem 4rem;
+        height: auto;
+        @media #{$medium-up} {
+            padding: 8rem 6rem;
+        }
+        @media #{$large-up} {
+            padding: 12rem;
+        }
+    }
+
+    &.dark-background {
+
+        a {
+            color: $color-light;
+            text-decoration: underline;
+            &:hover {
+                color: $color-yellow;
+                text-decoration: none;
+            }
+        }
+
+        .background-panel a:hover {
+            color: $color-yellow !important;
+        }
+
+        #main-menu-button h4 {
+            color: $color-light;
+        }
+        .background-panel {
+            color: $color-light;
+
+            .leader {
+                p, h1, h2, h3, h4, h5, span {
+                    color: $color-light;
+                }
+            }
+            .credit a {
+                color: $color-light;
+                text-decoration: underline;
+
+                &:hover {
+                    color: $color-yellow;
+                    text-decoration: none;
+                }
+
+            }
+        }
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        small{
+            margin-top: 48px;
+            display: block;
+            margin-left: -10px;
+
+            @media #{$medium-up}{
+
+            }
+        }
+
+    }
+}
+
+.home.light-background .subscribe-container {
+    border: 2px solid;
+}
+
+// Email box
+#signup .email {
+    background: $color-yellow;
+    border: none;
+    border-radius: 1rem;
+    height: 35px;
+    color: $color-dark;
+    margin: 0.5rem 0;
+    text-align: center;
+
+    .sign-up-container & {
+        width: 170px;
+        height: 30px;
+        display: inline;
+        margin: 0 0 0.5rem 0;
+        .page-template-page-manual &,
+        .page-template-single-manual &,
+        .single-manual &{
+            display: none;
+            @media #{$large-up}{
+                display: inline;
+                bottom: 0.4rem;
+                left: 1rem;
+                position: fixed;
+            }
+        }
+    }
+}

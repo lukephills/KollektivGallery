@@ -8,3 +8,5 @@ node_modules
 .ftpquota
 cgi-bin
 php_errorlog
+.listing
+wp-content/plugins/wordfence/tmp
