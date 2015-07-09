@@ -6,10 +6,10 @@ module.exports = function(grunt) {
 
 
         dirs: {
-            js: 'wp-content/themes/Kollektiv/assets/js',
-            scss: 'wp-content/themes/Kollektiv/assets/scss',
-            css: 'wp-content/themes/Kollektiv/css',
-            root: 'wp-content/themes/Kollektiv/'
+            js: 'wp-content/themes/KollektivGallery/assets/js',
+            scss: 'wp-content/themes/KollektivGallery/assets/scss',
+            css: 'wp-content/themes/KollektivGallery/css',
+            root: 'wp-content/themes/KollektivGallery/'
         },
 
 

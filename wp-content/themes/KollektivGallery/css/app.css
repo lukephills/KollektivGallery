@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-08 8:08:59 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-09 6:23:21 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
@@ -2871,6 +2871,19 @@ article {
 
 p.nocomments {
   display: none; }
+
+/*  Placeholder styles  */
+::-webkit-input-placeholder {
+  color: #333; }
+
+:-moz-placeholder {
+  color: #333; }
+
+::-moz-placeholder {
+  color: #333; }
+
+:-ms-input-placeholder {
+  color: #333; }
 
 /* Menu */
 .main-menu-wrap {

@@ -660,3 +660,17 @@ $social-media-icon-size: 20px;
 p.nocomments {
     display: none;
 }
+
+/*  Placeholder styles  */
+::-webkit-input-placeholder {
+    color: #333;
+}
+:-moz-placeholder {
+    color: #333;  // Firefox 18-
+}
+::-moz-placeholder {
+    color: #333;  // Firefox 19+
+}
+:-ms-input-placeholder {
+    color: #333;
+}
