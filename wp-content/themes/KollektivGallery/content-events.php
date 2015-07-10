@@ -3,7 +3,7 @@
     $args = array(
         'post_type' => 'event',
         'posts_per_page' => -1,
-        'meta_key' => 'date',
+        'meta_key' => 'datetime',
         'orderby' => 'meta_value_num',
         'order' => 'ASC'
     );
@@ -18,18 +18,19 @@
     <?php if( $query->have_posts() ) : while( $query->have_posts() ) : $query->the_post(); ?>
 
 	    <?
-	    $event_date = get_field('date');
+	    $event_date = get_field('datetime');
 	    $today_date = date('Ymd');
-	    $day = DateTime::createFromFormat('Ymd', $event_date);
 
+	    $date = date('jS', $event_date);
+	    $time = date('h:i', $event_date);
 	    ?>
 
 	    <? if ($event_date > $today_date): //up-coming events only ?>
 		    <div class="small-12 small-medium-6 medium-4 large-3 columns image table">
 			    <a href="<?php the_field('booking_link'); ?>" target="_blank">
 				    <div class="background-dark text-light text-center abs event-date">
-					    <span class="date"><? echo $day->format('jS'); ?>,</span>
-					    <span class="time"><? the_field('time'); ?></span>
+					    <span class="date"><? echo $date; ?>,</span>
+					    <span class="time"><? echo $time; ?></span>
 				    </div>
 				    <?php the_post_thumbnail('main-artist-image', array( 'class' => 'width100' )); ?>
 				    <div class="background-dark text-light text-center label">
