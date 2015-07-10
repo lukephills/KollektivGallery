@@ -1,0 +1,96 @@
+.testAutoPrefixer {
+    display: flex;
+    flex-direction: column-reverse;
+    transition: all 1s ease-out;
+}
+
+@import "settings";
+
+//FONTS
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
+
+@font-face {
+    font-family: 'Futura Std Medium';
+    src: url('assets/fonts/FuturaStd-Medium.eot'); /* IE9 Compat Modes */
+    src: url('assets/fonts/FuturaStd-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('assets/fonts/FuturaStd-Medium.woff') format('woff'), /* Modern Browsers */
+    url('assets/fonts/FuturaStd-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('assets/fonts/FuturaStd-Medium.svg#978bfeb47c41e9c6da434cb6375bf283') format('svg'); /* Legacy iOS */
+    font-style:   normal;
+    font-weight:  400;
+}
+
+$body-font-family: 'Open Sans', Arial, sans-serif;
+$header-font-family: 'Futura Std Medium', "Futura", Futura, 'Open Sans' Arial, sans-serif;
+$h1-font-size: 3rem;
+$paragraph-font-size: 0.9rem;
+$paragraph-line-height: 1.8;
+$small-font-size: 75%;
+
+/***** MIXINS *****/
+
+// Normal state
+@mixin normal {
+    &:link,
+    &:visited {
+        @content;
+    }
+}
+
+// Hover state
+@mixin hover {
+    &:hover,
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
+// Or selectively include components
+@import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "../bower_components/foundation/scss/foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+   "../bower_components/foundation/scss/foundation/components/flex-video",
+   "../bower_components/foundation/scss/foundation/components/forms",
+   "../bower_components/foundation/scss/foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+    "../bower_components/foundation/scss/foundation/components/type",
+//   "foundation/components/offcanvas",
+   "../bower_components/foundation/scss/foundation/components/visibility",
+
+    "main",
+    "menu",
+    "logo",
+    "frontpage",
+    "search",
+    "manual",
+    "single-picture-interview",
+    "video-modal",
+    "entries-sidebar",
+    "svg-animations";

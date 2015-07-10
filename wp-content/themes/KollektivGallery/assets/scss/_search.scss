@@ -1,0 +1,94 @@
+$search-slide-time: 0.1s;
+
+.search-container{
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    width: $menu-width - 34px;
+    height: 2rem;
+    border-radius: 2rem;
+    background: white;
+    z-index: $z-index-menu+1;
+    transform: translate3d(-$menu-width,0,0);
+    transition: all 0.01s;
+
+    form {
+        opacity: 0;
+
+        input[type="search"]::-webkit-search-decoration,
+        input[type="search"]::-webkit-search-cancel-button,
+        input[type="search"]::-webkit-search-results-button,
+        input[type="search"]::-webkit-search-results-decoration  {
+            -webkit-appearance: none;
+        }
+    }
+
+    .search-icon {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        left: 0.5rem;
+        top: 0.4rem;
+    }
+
+    &.menu-slide-open  {
+        transform: translate3d(0,0,0);
+        transition: transform $menu-slide-time;
+        transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    }
+
+    &.open {
+        position: fixed;
+        width: 100%;
+        min-height: 100%;
+        top: 0;
+        left: 0;
+        margin: auto;
+        opacity: 0.9;
+        border-radius: 0;
+        transition: all $search-slide-time;
+        transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+
+        form {
+            opacity: 1;
+        }
+
+        .search-icon {
+            display: none;
+        }
+
+        .search-form {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            max-width: 500px;
+            width: 90%;
+            max-height: 25%;
+            height: 90px;
+
+            .search-field {
+                height: 100%;
+                font-size: 4em;
+                font-family: "Futura", Futura, Arial, sans-serif;
+                color: $color-dark;
+                border: none;
+                border-bottom: 4px solid black;
+                box-shadow: none;
+                background: none;
+            }
+            .search-submit {
+                position: absolute;
+                right: 0rem;
+                top: 1.5rem;
+                width: 50px;
+                height: 50px;
+                background: url(assets/images/icons/search.svg) center center;
+                background-size: contain;
+                border: none;
+            }
+        }
+    }
+}
