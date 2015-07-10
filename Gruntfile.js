@@ -91,7 +91,7 @@ module.exports = function(grunt) {
             // Adds the wordpress theme information
             WordpressStyleInformation: {
                 src: ['<%= dirs.root %>/THEME_INFO.txt', '<%= dirs.css %>/app-prefix.min.css'],
-                dest: '<%= dirs.root %>/style.css'
+                dest: '<%= dirs.root %>style.css'
             }
         },
 

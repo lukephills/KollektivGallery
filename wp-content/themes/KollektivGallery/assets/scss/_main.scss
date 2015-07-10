@@ -407,6 +407,13 @@ $social-media-icon-size: 20px;
     .label {
         padding: .3em .5em;
         height: 60px;
+        display: table;
+        width: 100%;
+        font-size: 14px;
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
     }
 }
 
