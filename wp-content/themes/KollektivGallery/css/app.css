@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-10 1:37:53 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-10 2:08:19 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
@@ -2673,9 +2673,12 @@ article {
   margin-bottom: 0.5rem; }
 
 .event-date {
-  width: 45px;
-  height: 45px;
-  line-height: 45px; }
+  height: 35px;
+  line-height: 35px;
+  text-align: left;
+  padding: 0 0.4rem; }
+.event-date .time {
+  font-size: 12px; }
 
 .events-page.row.content {
   margin-top: 50px; }
@@ -2706,6 +2709,9 @@ article {
 .relative {
   position: relative; }
 
+.table {
+  display: table; }
+
 .center {
   position: absolute;
   top: 0;
@@ -2729,6 +2735,12 @@ article {
 .underline {
   border-bottom: 3px solid;
   display: inline; }
+
+.width100 {
+  width: 100%; }
+
+.height100 {
+  height: 100%; }
 
 /*============================================
                 COLOUR STUFF

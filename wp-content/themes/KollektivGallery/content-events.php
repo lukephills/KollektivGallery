@@ -25,12 +25,13 @@
 	    ?>
 
 	    <? if ($event_date > $today_date): //up-coming events only ?>
-		    <div class="small-12 small-medium-6 medium-4 large-3 columns image">
+		    <div class="small-12 small-medium-6 medium-4 large-3 columns image table">
 			    <a href="<?php the_field('booking_link'); ?>" target="_blank">
 				    <div class="background-dark text-light text-center abs event-date">
-					    <? echo $day->format('jS'); ?>
+					    <span class="date"><? echo $day->format('jS'); ?>,</span>
+					    <span class="time"><? the_field('time'); ?></span>
 				    </div>
-				    <?php the_post_thumbnail('main-artist-image'); ?>
+				    <?php the_post_thumbnail('main-artist-image', array( 'class' => 'width100' )); ?>
 				    <div class="background-dark text-light text-center label">
 					    <span><?php the_title(); ?></span>
 				    </div>
