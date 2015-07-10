@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-10 2:08:19 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-10 2:22:21 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
@@ -2742,6 +2742,12 @@ article {
 .height100 {
   height: 100%; }
 
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0 !important; }
+
+.hide-scrollbar {
+  -ms-overflow-style: none; }
+
 /*============================================
                 COLOUR STUFF
  ============================================*/
@@ -2934,7 +2940,7 @@ p.nocomments {
   fill: #000; }
 
 .main-menu {
-  overflow-y: scroll; }
+  overflow: hidden; }
 
 .main-menu, .icon-list {
   height: 100%; }

@@ -482,6 +482,13 @@ $social-media-icon-size: 20px;
     height: 100%;
 }
 
+// HIDE SCROLL BARS
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0 !important
+}
+.hide-scrollbar { -ms-overflow-style: none; }
+
+
 /*============================================
                 COLOUR STUFF
  ============================================*/
