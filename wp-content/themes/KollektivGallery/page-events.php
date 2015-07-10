@@ -15,6 +15,10 @@
         
     </div>
 
+	<div class="row page">
+		<? the_content(); ?>
+	</div>
+
     <?php get_template_part('content', 'events'); ?>
 
 <?php get_footer(); ?>
