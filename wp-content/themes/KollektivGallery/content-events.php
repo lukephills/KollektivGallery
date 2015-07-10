@@ -21,8 +21,8 @@
 	    $event_date = get_field('datetime');
 	    $today_date = date('Ymd');
 
-	    $date = date('jS', strtotime($event_date));
-	    $time = date('H:i', strtotime($event_date));
+	    $date = date('jS', (int) $event_date);
+	    $time = date('H:i', (int) $event_date);
 	    ?>
 
 	    <? if ($event_date > $today_date): //up-coming events only ?>
