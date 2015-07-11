@@ -670,6 +670,8 @@ $social-media-icon-size: 20px;
 .popmake {
     .popmake-title {
         font-family: $header-font-family !important;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
     }
     .popmake-content p {
         margin-bottom: 0 !important;
