@@ -668,6 +668,7 @@ $social-media-icon-size: 20px;
 
 // Popup maker - plugin
 .popmake {
+    width: 100% !important;
     .popmake-title {
         font-family: $header-font-family !important;
         text-transform: uppercase;
