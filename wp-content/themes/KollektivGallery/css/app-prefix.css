@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-11 10:29:08 AM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-11 10:35:47 AM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
@@ -2957,6 +2957,8 @@ article {
   margin-bottom: 0.3rem; }
 .popmake .popmake-content p {
   margin-bottom: 0 !important; }
+.popmake .popmake-content p a {
+  font-weight: 800; }
 
 #signup.subscribe-form.shortcode {
   margin: 0.5rem 0; }
