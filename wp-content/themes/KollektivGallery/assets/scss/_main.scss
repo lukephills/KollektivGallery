@@ -70,6 +70,10 @@ $row-width-full: 70rem;
     &.page {
         max-width: $row-width-page;
         margin: 2rem auto;
+        &.workshops {
+            max-width: 50rem;
+            margin: 2rem auto 1rem;
+        }
     }
     &.content {
         margin-top: 80px;
@@ -403,7 +407,7 @@ $social-media-icon-size: 20px;
 }
 
 .events-page.row.content {
-    margin-top: 50px;
+    margin-top: 1rem;
     p {
         padding: 0 1em;
     }

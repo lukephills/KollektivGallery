@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-10 2:22:21 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2015-07-11 10:09:10 AM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
@@ -2475,6 +2475,9 @@ a:hover, a:focus, a:active {
 .row.page {
   max-width: 38rem;
   margin: 2rem auto; }
+.row.page.workshops {
+  max-width: 50rem;
+  margin: 2rem auto 1rem; }
 .row.content {
   margin-top: 80px;
   min-height: 80%; }
@@ -2681,7 +2684,7 @@ article {
   font-size: 12px; }
 
 .events-page.row.content {
-  margin-top: 50px; }
+  margin-top: 1rem; }
 .events-page.row.content p {
   padding: 0 1em; }
 .events-page.row.content .label {

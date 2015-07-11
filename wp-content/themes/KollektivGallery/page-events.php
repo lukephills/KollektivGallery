@@ -15,7 +15,7 @@
         
     </div>
 
-	<div class="row page">
+	<div class="row page workshops">
 		<? the_content(); ?>
 	</div>
 
