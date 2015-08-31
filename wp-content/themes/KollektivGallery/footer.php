@@ -8,7 +8,6 @@
 					</div>
 					<div class="small-12 medium-4 columns text-center company">
 						<small class="copyright">&copy; Kollektiv Gallery&trade;</small>
-						<small class="company-number">Company no: 08943156</small>
 					</div>
 					<div class="small-12 medium-4 columns social">
 						<? include 'partials/social-icons.php'; ?>
