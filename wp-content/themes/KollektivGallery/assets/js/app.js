@@ -439,6 +439,21 @@ jQuery(document).ready(function($) {
                     $('#manual-image-z svg #evaluate5').show();
                 }, 2100);
                 break;
+
+            case 'intro':
+                TweenLite.to($('circle#Amber, circle#Green'), 0.01, {fill:"#9E9E9E"});
+                TweenLite.to($('circle#Red'), 0.01, {fill:"#F70D1E"});
+                setTimeout(function() {
+                    TweenLite.to($('circle#Red'), 0.3, {fill:"#9E9E9E", ease: Strong.easeOut});
+                    TweenLite.to($('circle#Amber'), 0.3, {fill:"#F4E637"});
+                }, 1000);
+                setTimeout(function() {
+                    TweenLite.to($('circle#Amber'), 0.3, {fill:"#9E9E9E", ease: Strong.easeOut});
+                    TweenLite.to($('circle#Green'), 0.3, {fill:"#65C427"});
+                }, 2000);
+
+
+                break;
         }
 
     };
@@ -455,7 +470,6 @@ jQuery(document).ready(function($) {
             TweenLite.to($line, 2, {strokeDashoffset: "0", ease: Power1.easeIn});
         }, 500);
 
-        console.log('hello');
     };
 
 
