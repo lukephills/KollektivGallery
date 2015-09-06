@@ -21,6 +21,10 @@
     .letter {
         color: $color-light;
     }
+
+    &#manual-id-intro, &#manual-id-end {
+        background: white;
+    }
 }
 
 .manual-image {
