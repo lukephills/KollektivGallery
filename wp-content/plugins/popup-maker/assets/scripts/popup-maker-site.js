@@ -1,8 +1,18 @@
 /**
- * Popup Maker v1.2
+ * Popup Maker v1.3.2
  */
 (function (jQuery) {
     "use strict";
+    var isScrolling = false;
+    jQuery(window)
+        .on('scroll', function () {
+            isScrolling = true;
+        })
+        .on('scrollstop', function () {
+            isScrolling = false;
+        });
+
+
     if (!jQuery.isFunction(jQuery.fn.on)) {
         jQuery.fn.on = function (types, sel, fn) {
             return this.delegate(sel, types, fn);
@@ -11,6 +21,7 @@
             return this.undelegate(sel, types, fn);
         };
     }
+
 
     jQuery.fn.popmake = function (method) {
         // Method calling logic
@@ -23,6 +34,8 @@
         jQuery.error('Method ' + method + ' does not exist on jQuery.fn.popmake');
     };
 
+    jQuery.fn.popmake.version = 1.3;
+
     jQuery.fn.popmake.last_open_popup = null;
     jQuery.fn.popmake.last_open_trigger = null;
     jQuery.fn.popmake.last_close_trigger = null;
@@ -32,10 +45,6 @@
             return this.each(function () {
                 var $this = jQuery(this),
                     settings = jQuery.extend(true, {}, jQuery.fn.popmake.defaults, $this.data('popmake'), options);
-
-                if (!$this.parent().is('body')) {
-                    $this.appendTo('body');
-                }
 
                 if (!jQuery('#' + settings.overlay.attr.id).length) {
                     jQuery('<div>').attr(settings.overlay.attr).appendTo('body');
@@ -55,39 +64,6 @@
 
                 $this
                     .data('popmake', settings)
-                    .on('popmakeBeforeOpen.hide_popup', function () {
-                        jQuery(this)
-                            .css({ visibility: "visible" })
-                            .hide()
-                            .addClass(settings.container.active_class);
-
-                        if (!settings.meta.display.stackable) {
-                            $this.popmake('close_all');
-                        }
-                    })
-                    .on('popmakeAfterClose.close_overlay', function () {
-                        var $overlay = jQuery('#' + settings.overlay.attr.id);
-                        if ($overlay.length && $overlay.is(":visible")) {
-                            $overlay.fadeOut(settings.close.close_speed);
-                        }
-                    })
-                    .on('popmakeAfterClose.reset_videos', function () {
-                        jQuery('iframe', $this).filter('[src*="youtube"],[src*="vimeo"]').each(function () {
-                            var src = jQuery(this).attr('src')
-                                // Remove autoplay so video doesn't start playing again.
-                                .replace('autoplay=1', '1=1');
-                            jQuery(this).attr('src', '').attr('src', src);
-                        });
-                    })
-                    .on('popmakeBeforeOpen.setup_close', function () {
-                        $this.popmake('setup_close');
-                    })
-                    .on('popmakeBeforeOpen.retheme', function () {
-                        $this.popmake('retheme');
-                    })
-                    .on('popmakeBeforeOpen.reposition', function () {
-                        $this.popmake('reposition');
-                    })
                     .trigger('popmakeInit');
                 return this;
             });
@@ -95,18 +71,18 @@
         setup_close: function () {
             var $this = jQuery(this),
                 settings = $this.data('popmake'),
-                $overlay = jQuery('#' + settings.overlay.attr.id),
-                $close = jQuery('.' + settings.close.attr.class, $this);
+                $overlay = jQuery('#popmake-overlay'),
+                $close = jQuery('.popmake-close', $this);
 
             $close
                 .off('click.popmake')
                 .on("click.popmake", function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-
                     jQuery.fn.popmake.last_close_trigger = 'Close Button';
                     $this.popmake('close');
                 });
+
             if (settings.meta.close.esc_press || settings.meta.close.f4_press) {
                 jQuery(window)
                     .off('keyup.popmake')
@@ -122,7 +98,6 @@
                     });
             }
 
-
             if (settings.meta.close.overlay_click) {
                 $overlay
                     .off('click.popmake')
@@ -136,24 +111,51 @@
                     });
             }
 
-            $this
-                .on('popmakeAfterClose', function () {
-                    jQuery(window).off('keyup.popmake');
-                    $overlay.off('click.popmake');
-                    $close.off('click.popmake');
-                })
-                .trigger('popmakeSetupClose');
+            $this.trigger('popmakeSetupClose');
+            return this;
         },
         open: function (callback) {
             var $this = jQuery(this),
                 settings = $this.data('popmake');
 
+            if (!settings.meta.display.stackable) {
+                $this.popmake('close_all');
+            }
+
             $this
-                .trigger('popmakeBeforeOpen')
+                .css({visibility: "visible"})
+                .hide()
+                .addClass('active')
+                .popmake('setup_close')
+                .popmake('reposition')
+                .trigger('popmakeBeforeOpen');
+
+            if (settings.meta.close.button_delay > 0) {
+                $this.find('.popmake-content + .popmake-close').fadeOut(0);
+            }
+
+            if ($this.hasClass('preventOpen')) {
+                $this
+                    .removeClass('preventOpen')
+                    .removeClass('active');
+                return this;
+            }
+
+            jQuery('#popmake-overlay')
+                .prop('class', 'popmake-overlay theme-' + settings.theme_id)
+                .css({'z-index': settings.meta.display.overlay_zindex || 1999999998});
+
+            $this
+                .css({'z-index': settings.meta.display.zindex || 1999999999})
                 .popmake('animate', settings.meta.display.animation_type, function () {
-                    $this
-                        .addClass('active')
-                        .trigger('popmakeAfterOpen');
+
+                    if (settings.meta.close.button_delay > 0) {
+                        setTimeout(function () {
+                            $this.find('.popmake-content + .popmake-close').fadeIn();
+                        }, settings.meta.close.button_delay);
+                    }
+
+                    $this.trigger('popmakeAfterOpen');
                     jQuery.fn.popmake.last_open_popup = $this;
                     if (callback !== undefined) {
                         callback();
@@ -161,23 +163,50 @@
                 });
             return this;
         },
-        close: function () {
+        close: function (callback) {
             return this.each(function () {
                 var $this = jQuery(this),
+                    $overlay = jQuery('#popmake-overlay'),
+                    $close = jQuery('.popmake-close', $this),
                     settings = $this.data('popmake');
+
                 $this
                     .trigger('popmakeBeforeClose')
                     .fadeOut(settings.close.close_speed, function () {
+
+                        if ($overlay.length && $overlay.is(":visible")) {
+                            $overlay.fadeOut(settings.close.close_speed);
+                        }
+
+                        jQuery(window).off('keyup.popmake');
+                        $overlay.off('click.popmake');
+                        $close.off('click.popmake');
+
                         $this
                             .removeClass('active')
                             .trigger('popmakeAfterClose');
+
+                        jQuery('iframe', $this).filter('[src*="youtube"],[src*="vimeo"]').each(function () {
+                            var $iframe = jQuery(this),
+                                src = $iframe.attr('src')
+                                    // Remove autoplay so video doesn't start playing again.
+                                    .replace('autoplay=1', '1=1');
+                            $iframe.attr('src', '').attr('src', src);
+                        });
+
+                        jQuery('video', $this).each(function () {
+                           this.pause();
+                        });
+
+                        if (callback !== undefined) {
+                            callback();
+                        }
                     });
                 return this;
             });
         },
         close_all: function () {
-            var settings = jQuery(this).data('popmake');
-            jQuery('.' + settings.container.attr.class).removeClass('active').hide(0);
+            jQuery('.popmake.active').popmake('close');
             return this;
         },
         reposition: function (callback) {
@@ -219,11 +248,11 @@
             }
             if (location.indexOf('top') >= 0) {
                 reposition = {
-                    my: reposition.my + " top" + (display.position_top !== 0 ? "+" + display.position_top : ""),
+                    my: reposition.my + " top" + (display.position_top !== 0 ? "+" + (jQuery('body').hasClass('admin-bar') ? parseInt(display.position_top, 10) + 32 : display.position_top) : ""),
                     at: reposition.at + " top"
                 };
             }
-            if (location.indexOf('bottom')  >= 0) {
+            if (location.indexOf('bottom') >= 0) {
                 reposition = {
                     my: reposition.my + " bottom" + (display.position_bottom !== 0 ? "-" + display.position_bottom : ""),
                     at: reposition.at + " bottom"
@@ -262,7 +291,7 @@
                     $this
                         .addClass('responsive')
                         .css({
-                            mixWidth: settings.meta.display.responsive_min_width !== '' ? settings.meta.display.responsive_min_width + settings.meta.display.responsive_min_width_unit : 'auto',
+                            minWidth: settings.meta.display.responsive_min_width !== '' ? settings.meta.display.responsive_min_width + settings.meta.display.responsive_min_width_unit : 'auto',
                             maxWidth: settings.meta.display.responsive_max_width !== '' ? settings.meta.display.responsive_max_width + settings.meta.display.responsive_max_width_unit : 'auto'
                         });
                 }
@@ -340,6 +369,8 @@
             });
             $close.html(theme.close.text).css({
                 padding: theme.close.padding + 'px',
+                height: theme.close.height + 'px',
+                width: theme.close.width + 'px',
                 backgroundColor: jQuery.fn.popmake.utilities.convert_hex(theme.close.background_color, theme.close.background_opacity),
                 color: theme.close.font_color,
                 lineHeight: theme.close.line_height + 'px',
@@ -514,7 +545,8 @@
                 // If we can't parse the cookie, ignore it, it's unusable.
                 s = decodeURIComponent(s.replace(jQuery.fn.popmake.cookie.pluses, ' '));
                 return jQuery.fn.popmake.cookie.json ? JSON.parse(s) : s;
-            } catch (ignore) {}
+            } catch (ignore) {
+            }
         },
         read: function (s, converter) {
             var value = jQuery.fn.popmake.cookie.raw ? s : jQuery.fn.popmake.cookie.parseCookieValue(s);
@@ -547,7 +579,7 @@
                 document.cookie = [
                     jQuery.fn.popmake.cookie.encode(key), '=', jQuery.fn.popmake.cookie.stringifyCookieValue(value),
                     expires ? '; expires=' + expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-                    path    ? '; path=' + path : ''
+                    path ? '; path=' + path : ''
                 ].join('');
                 return;
             }
@@ -688,7 +720,7 @@
                             return fail;
                         }
                         return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     case '.':
                         // YYYY.M.D is not parsed by strtotime()
                         return fail;
@@ -698,7 +730,7 @@
                             return fail;
                         }
                         return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     }
                 } else if (match[5] > 1901) {
                     switch (match[2]) {
@@ -708,21 +740,21 @@
                             return fail;
                         }
                         return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     case '.':
                         // D.M.YYYY
                         if (match[3] > 12 || match[1] > 31) {
                             return fail;
                         }
                         return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     case '/':
                         // M/D/YYYY
                         if (match[1] > 12 || match[3] > 31) {
                             return fail;
                         }
                         return new Date(match[5], parseInt(match[1], 10) - 1, match[3],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     }
                 } else {
                     switch (match[2]) {
@@ -733,7 +765,7 @@
                         }
                         year = match[1] >= 0 && match[1] <= 38 ? +match[1] + 2000 : match[1];
                         return new Date(year, parseInt(match[3], 10) - 1, match[5],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     case '.':
                         // D.M.YY or H.MM.SS
                         if (match[5] >= 70) { // D.M.YY
@@ -741,7 +773,7 @@
                                 return fail;
                             }
                             return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
-                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                    match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                         }
                         if (match[5] < 60 && !match[6]) { // H.MM.SS
                             if (match[1] > 23 || match[3] > 59) {
@@ -749,7 +781,7 @@
                             }
                             today = new Date();
                             return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
-                                match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
+                                    match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
                         }
                         return fail; // invalid format, cannot be parsed
                     case '/':
@@ -759,7 +791,7 @@
                         }
                         year = match[5] >= 0 && match[5] <= 38 ? +match[5] + 2000 : match[5];
                         return new Date(year, parseInt(match[1], 10) - 1, match[3],
-                            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+                                match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
                     case ':':
                         // HH:MM:SS
                         if (match[1] > 23 || match[3] > 59 || match[5] > 59) {
@@ -767,7 +799,7 @@
                         }
                         today = new Date();
                         return new Date(today.getFullYear(), today.getMonth(), today.getDate(),
-                            match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
+                                match[1] || 0, match[3] || 0, match[5] || 0) / 1000;
                     }
                 }
             }
@@ -837,6 +869,7 @@
                 }
                 return true;
             }
+
             times = '(years?|months?|weeks?|days?|hours?|minutes?|min|seconds?|sec' +
                 '|sunday|sun\\.?|monday|mon\\.?|tuesday|tue\\.?|wednesday|wed\\.?' +
                 '|thursday|thu\\.?|friday|fri\\.?|saturday|sat\\.?)';
@@ -860,7 +893,6 @@
     jQuery.fn.popmake.utilies = jQuery.fn.popmake.utilities;
 
     jQuery.fn.popmake.defaults = {
-        theme_id: popmake_default_theme,
         meta: {
             display: {
                 stackable: 0,
@@ -921,23 +953,15 @@
         }
     };
 
-    jQuery.fn.popmake.themes = popmake_themes;
-
     jQuery.fn.popmake.overlay_animations = {
         none: function (duration, callback) {
-            var $this = jQuery(this),
-                settings = $this.data('popmake');
-            jQuery('#' + settings.overlay.attr.id).show(duration, callback);
+            jQuery('#popmake-overlay').show(duration, callback);
         },
         fade: function (duration, callback) {
-            var $this = jQuery(this),
-                settings = $this.data('popmake');
-            jQuery('#' + settings.overlay.attr.id).fadeIn(duration, callback);
+            jQuery('#popmake-overlay').fadeIn(duration, callback);
         },
         slide: function (duration, callback) {
-            var $this = jQuery(this),
-                settings = $this.data('popmake');
-            jQuery('#' + settings.overlay.attr.id).slideDown(duration, callback);
+            jQuery('#popmake-overlay').slideDown(duration, callback);
         }
     };
 
@@ -953,46 +977,45 @@
             return this;
         },
         slide: function (callback) {
-            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+            var $this = jQuery(this).show(0).css({opacity: 0}),
                 settings = $this.data('popmake'),
-                speed = settings.meta.display.animation_speed / 2000,
+                speed = settings.meta.display.animation_speed / 2,
                 start = $this.popmake('animation_origin', settings.meta.display.animation_origin);
 
-            jQuery('html').css('overflow-x', 'hidden');
+            if (!settings.meta.display.position_fixed && !isScrolling) {
+                jQuery('html').css('overflow-x', 'hidden');
+            }
 
             $this
                 .position(start)
-                .css({ opacity: 1 })
-                .popmake('animate_overlay', 'fade', speed * 1000, function () {
+                .css({opacity: 1})
+                .popmake('animate_overlay', 'fade', speed, function () {
                     $this.popmake('reposition', function (position) {
 
-                        TweenLite.to($this, speed, jQuery.extend(position, {
-                            onComplete: function () {
+                        $this.animate(position, speed, 'swing', function () {
+                            if (!settings.meta.display.position_fixed) {
                                 jQuery('html').css('overflow-x', 'inherit');
-                                if (callback !== undefined) {
-                                    callback();
-                                }
                             }
-                        }));
+                            if (callback !== undefined) {
+                                callback();
+                            }
+                        });
 
                     });
                 });
             return this;
         },
         fade: function (callback) {
-            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+            var $this = jQuery(this).show(0).css({opacity: 0}),
                 settings = $this.data('popmake'),
-                speed = settings.meta.display.animation_speed / 2000;
+                speed = settings.meta.display.animation_speed / 2;
 
             $this
-                .popmake('animate_overlay', 'fade', speed * 1000, function () {
+                .popmake('animate_overlay', 'fade', speed, function () {
 
-                    TweenLite.to($this, speed, {
-                        opacity: 1,
-                        onComplete: function () {
-                            if (callback !== undefined) {
-                                callback();
-                            }
+                    $this.animate({opacity: 1}, speed, 'swing', function () {
+                        if (callback !== undefined) {
+                            callback();
                         }
                     });
 
@@ -1000,101 +1023,167 @@
             return this;
         },
         fadeAndSlide: function (callback) {
-            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+            var $this = jQuery(this).show(0).css({opacity: 0}),
                 settings = $this.data('popmake'),
-                speed = settings.meta.display.animation_speed / 2000,
+                speed = settings.meta.display.animation_speed / 2,
                 start = $this.popmake('animation_origin', settings.meta.display.animation_origin);
 
-            jQuery('html').css('overflow-x', 'hidden');
+            if (!settings.meta.display.position_fixed && !isScrolling) {
+                jQuery('html').css('overflow-x', 'hidden');
+            }
 
             $this
                 .position(start)
-                .popmake('animate_overlay', 'fade', speed * 1000, function () {
+                .popmake('animate_overlay', 'fade', speed, function () {
                     $this.popmake('reposition', function (position) {
 
-                        TweenLite.to($this, speed, jQuery.extend(position, {
-                            opacity: 1,
-                            onComplete: function () {
+                        position.opacity = 1;
+                        $this.animate(position, speed, 'swing', function () {
+                            if (!settings.meta.display.position_fixed) {
                                 jQuery('html').css('overflow-x', 'inherit');
-                                if (callback !== undefined) {
-                                    callback();
-                                }
                             }
-                        }));
+                            if (callback !== undefined) {
+                                callback();
+                            }
+                        });
 
                     });
                 });
             return this;
         },
         grow: function (callback) {
-            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+            /*            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+             settings = $this.data('popmake'),
+             speed = settings.meta.display.animation_speed / 2,
+             origin = settings.meta.display.animation_origin,
+             original_size = {height: $this.height(), width: $this.width()};
+
+             if (origin === 'top' || origin === 'bottom') {
+             origin = 'center ' + origin;
+             }
+             if (origin === 'left' || origin === 'right') {
+             origin = origin + ' center';
+             }
+
+             $this.css({
+             opacity: 1
+             });
+
+             $this.popmake('animate_overlay', 'fade', speed, function () {
+             // Reposition with callback. position returns default positioning.
+             $this.popmake('reposition', function (position) {
+
+             position.height = original_size.height;
+             position.width = original_size.width;
+             $this.css({
+             height: 0,
+             width: 0
+             }).animate(position, speed, 'swing', function () {
+             if (callback !== undefined) {
+             callback();
+             }
+             });
+
+             });
+             });
+             return this;
+             */
+            var $this = jQuery(this).show(0).css({opacity: 0}),
                 settings = $this.data('popmake'),
-                speed = settings.meta.display.animation_speed / 2000,
-                origin = settings.meta.display.animation_origin;
+                speed = settings.meta.display.animation_speed / 2,
+                start = $this.popmake('animation_origin', settings.meta.display.animation_origin);
 
-            if (origin === 'top' || origin === 'bottom') {
-                origin = 'center ' + origin;
-            }
-            if (origin === 'left' || origin === 'right') {
-                origin = origin + ' center';
+            if (!settings.meta.display.position_fixed && !isScrolling) {
+                jQuery('html').css('overflow-x', 'hidden');
             }
 
-            TweenLite.to($this, 0, {
-                transformOrigin: origin,
-                scale: 0,
-                opacity: 1
-            });
+            $this
+                .position(start)
+                .css({opacity: 1})
+                .popmake('animate_overlay', 'fade', speed, function () {
+                    $this.popmake('reposition', function (position) {
 
-            $this.popmake('animate_overlay', 'fade', speed * 1000, function () {
-                // Reposition with callback. position returns default positioning.
-                $this.popmake('reposition', function (position) {
-
-                    TweenLite.to($this, speed, {
-                        scale: 1,
-                        onComplete: function () {
+                        $this.animate(position, speed, 'swing', function () {
+                            if (!settings.meta.display.position_fixed) {
+                                jQuery('html').css('overflow-x', 'inherit');
+                            }
                             if (callback !== undefined) {
                                 callback();
                             }
-                        }
+                        });
+
                     });
                 });
-            });
             return this;
+
         },
         growAndSlide: function (callback) {
-            var $this = jQuery(this).show(0).css({ opacity: 0 }),
+            var $this = jQuery(this).show(0).css({opacity: 0}),
                 settings = $this.data('popmake'),
-                speed = settings.meta.display.animation_speed / 2000,
-                origin = settings.meta.display.animation_origin,
-                start = $this.popmake('animation_origin', origin);
+                speed = settings.meta.display.animation_speed / 2,
+                start = $this.popmake('animation_origin', settings.meta.display.animation_origin);
 
-            jQuery('html').css('overflow-x', 'hidden');
+            if (!settings.meta.display.position_fixed && !isScrolling) {
+                jQuery('html').css('overflow-x', 'hidden');
+            }
 
-            $this.position(start);
+            $this
+                .position(start)
+                .css({opacity: 1})
+                .popmake('animate_overlay', 'fade', speed, function () {
+                    $this.popmake('reposition', function (position) {
 
-            TweenLite.to($this, 0, { scale: 0, opacity: 1, transformOrigin: '0 0' });
-
-            $this.popmake('animate_overlay', 'fade', speed * 1000, function () {
-                $this.popmake('reposition', function (position) {
-
-                    TweenLite.to($this, speed, jQuery.extend(position, {
-                        scale: 1,
-                        transformOrigin: '50% 50%',
-                        onComplete: function () {
-                            jQuery('html').css('overflow-x', 'inherit');
+                        $this.animate(position, speed, 'swing', function () {
+                            if (!settings.meta.display.position_fixed) {
+                                jQuery('html').css('overflow-x', 'inherit');
+                            }
                             if (callback !== undefined) {
                                 callback();
                             }
-                        }
-                    }));
+                        });
 
+                    });
                 });
-            });
             return this;
+            /*
+             var $this = jQuery(this).show(0).css({ opacity: 0 }),
+             settings = $this.data('popmake'),
+             speed = settings.meta.display.animation_speed / 2000,
+             origin = settings.meta.display.animation_origin,
+             start = $this.popmake('animation_origin', origin);
+
+             if (!settings.meta.display.position_fixed && !isScrolling) {
+             jQuery('html').css('overflow-x', 'hidden');
+             }
+
+             $this.position(start);
+
+             TweenLite.to($this, 0, { scale: 0, opacity: 1, transformOrigin: '0 0' });
+
+             $this.popmake('animate_overlay', 'fade', speed * 1000, function () {
+             $this.popmake('reposition', function (position) {
+
+             TweenLite.to($this, speed, jQuery.extend(position, {
+             scale: 1,
+             transformOrigin: '50% 50%',
+             onComplete: function () {
+             if (!settings.meta.display.position_fixed) {
+             jQuery('html').css('overflow-x', 'inherit');
+             }
+             if (callback !== undefined) {
+             callback();
+             }
+             }
+             }));
+
+             });
+             });
+             return this;
+             */
         }
     };
 
-    jQuery('.popmake').css({ visibility: "visible" }).hide();
+    jQuery('.popmake').css({visibility: "visible"}).hide();
 
     jQuery(document).ready(function () {
         jQuery('.popmake')
@@ -1106,6 +1195,7 @@
                     trigger_selector = '.popmake-' + settings.id + ', .popmake-' + settings.slug,
                     admin_debug = settings.meta.admin_debug,
                     auto_open = settings.meta.auto_open,
+                    cookie_name = "popmake-auto-open-" + settings.id,
                     noCookieCheck;
 
                 if (click_open !== undefined && click_open.extra_selectors !== '') {
@@ -1113,10 +1203,12 @@
                 }
 
                 jQuery(trigger_selector).css({cursor: "pointer"});
-                jQuery(document).on('click', trigger_selector, function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    jQuery.fn.popmake.last_open_trigger = jQuery.fn.popmake.utilities.getXPath(this);
+                jQuery(document).on('click.popmakeOpen', trigger_selector, function (event) {
+                    if (!jQuery(event.target).hasClass('do-default')) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    jQuery.fn.popmake.last_open_trigger = this; //jQuery.fn.popmake.utilities.getXPath(this);
                     $this.popmake('open');
                 });
 
@@ -1127,16 +1219,20 @@
 
                 if (auto_open !== undefined && auto_open.enabled) {
 
+                    if (auto_open.cookie_key !== undefined && auto_open.cookie_key !== '') {
+                        cookie_name = cookie_name + "-" + auto_open.cookie_key;
+                    }
+
                     noCookieCheck = function () {
-                        return jQuery.pm_cookie("popmake-auto-open-" + settings.id + "-" + auto_open.cookie_key) === undefined;
+                        return jQuery.pm_cookie(cookie_name) === undefined;
                     };
 
-                    $this.on('popmakeSetCookie', function () {
+                    $this.on('popmakeSetCookie.auto-open', function () {
                         if (auto_open.cookie_time !== '' && noCookieCheck()) {
                             jQuery.pm_cookie(
-                                "popmake-auto-open-" + settings.id + "-" + auto_open.cookie_key,
+                                cookie_name,
                                 true,
-                                auto_open.cookie_time,
+                                auto_open.session_cookie ? null : auto_open.cookie_time,
                                 auto_open.cookie_path
                             );
                         }
@@ -1157,8 +1253,10 @@
 
                     setTimeout(function () {
                         if (noCookieCheck()) {
-                            jQuery.fn.popmake.last_open_trigger = 'Auto Open Popups ID-' + settings.id;
-                            $this.popmake('open');
+                            if (!$this.hasClass('active')) {
+                                jQuery.fn.popmake.last_open_trigger = 'Auto Open Popups ID-' + settings.id;
+                                $this.popmake('open');
+                            }
                         }
                     }, auto_open.delay);
                 }
