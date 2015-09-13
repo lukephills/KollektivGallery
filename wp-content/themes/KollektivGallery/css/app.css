@@ -1,7 +1,3 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-09-06 11:37:58 AM */
-
-/*! Kollektiv-Legacy 1.0.1 styles.css 2015-09-06 11:37:58 AM */
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 .testAutoPrefixer {
   display: flex;
@@ -3267,8 +3263,6 @@ p.nocomments {
   color: #fff; }
 .home.dark-background .background-panel {
   color: #fff; }
-.home.dark-background .background-panel .leader {
-  text-shadow: 0px 0px 18px #000; }
 .home.dark-background .background-panel .leader p, .home.dark-background .background-panel .leader h1, .home.dark-background .background-panel .leader h2, .home.dark-background .background-panel .leader h3, .home.dark-background .background-panel .leader h4, .home.dark-background .background-panel .leader h5, .home.dark-background .background-panel .leader span {
   color: #fff; }
 .home.dark-background .background-panel .credit a {
