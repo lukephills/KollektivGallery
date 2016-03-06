@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function popmake_load_site_scripts() {
-	$js_dir = POPMAKE_URL . '/assets/scripts/';
+	$js_dir = POPMAKE_URL . '/assets/js/';
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.js' : '.min.js';
 
 	// Deprecated. No longer used. Here for older versions of some extensions.
@@ -35,6 +35,7 @@ function popmake_load_site_scripts() {
 		'jquery-ui-position'
 	), POPMAKE_VERSION, true );
 	wp_localize_script( 'popup-maker-site', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+	wp_localize_script( 'popup-maker-site', 'popmake_default_theme', (string) popmake_get_default_popup_theme() );
 
 	if ( popmake_get_option( 'popmake_powered_by_opt_in', false ) ) {
 		$size = popmake_get_option( 'popmake_powered_by_size', '' );
@@ -58,26 +59,10 @@ add_action( 'wp_enqueue_scripts', 'popmake_load_site_scripts' );
  * @return void
  */
 function popmake_load_site_styles() {
-	global $popmake_needed_google_fonts;
-	$css_dir = POPMAKE_URL . '/assets/styles/';
+	$css_dir = POPMAKE_URL . '/assets/css/';
 	$suffix  = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.css' : '.min.css';
 	wp_register_style( 'popup-maker-site', $css_dir . 'popup-maker-site' . $suffix, false, POPMAKE_VERSION );
-	if ( ! empty( $popmake_needed_google_fonts ) && ! popmake_get_option( 'disable_google_font_loading', false ) ) {
-		$link = "//fonts.googleapis.com/css?family=";
-		foreach ( $popmake_needed_google_fonts as $font_family => $variants ) {
-			if ( $link != "//fonts.googleapis.com/css?family=" ) {
-				$link .= "|";
-			}
-			$link .= $font_family;
-			if ( ! empty( $variants ) ) {
-				$link .= ":";
-				$link .= implode( ',', $variants );
-			}
-		}
-		wp_register_style( 'popup-maker-google-fonts', $link );
-	}
 }
-
 add_action( 'wp_enqueue_scripts', 'popmake_load_site_styles' );
 
 function popmake_render_popup_theme_styles() {
@@ -93,14 +78,37 @@ function popmake_render_popup_theme_styles() {
 
 		$styles = '';
 
+		$google_fonts = array();
+
 		foreach ( popmake_get_all_popup_themes() as $theme ) {
 			$theme_styles = popmake_render_theme_styles( $theme->ID );
+
+			$google_fonts = array_merge( $google_fonts, popmake_get_popup_theme_google_fonts( $theme->ID ) );
 
 			if ( $theme_styles != '' ) {
 				$styles .= "/* Popup Theme " . $theme->ID . ": " . $theme->post_title . " */\r\n";
 				$styles .= $theme_styles;
 			}
 		}
+
+		if ( ! empty( $google_fonts ) ) {
+			$link = "//fonts.googleapis.com/css?family=";
+			foreach ( $google_fonts as $font_family => $variants ) {
+				if ( $link != "//fonts.googleapis.com/css?family=" ) {
+					$link .= "|";
+				}
+				$link .= $font_family;
+				if ( is_array( $variants ) ) {
+					if ( implode( ',', $variants ) != '' ) {
+						$link .= ":";
+						$link .= trim( implode( ',', $variants ), ':' );
+					}
+				}
+			}
+
+			$styles = "/* Popup Google Fonts */\r\n@import url('$link');\r\n\r\n" . $styles;
+		}
+
 
 		set_transient( 'popmake_theme_styles', $styles, 7 * DAY_IN_SECONDS );
 
@@ -124,7 +132,7 @@ add_action( 'admin_head', 'popmake_render_popup_theme_styles' );
  * @return void
  */
 function popmake_load_admin_scripts() {
-	$js_dir = POPMAKE_URL . '/assets/scripts/';
+	$js_dir = POPMAKE_URL . '/assets/js/';
 	// Use minified libraries if SCRIPT_DEBUG is turned off
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.js' : '.min.js';
 	if ( popmake_is_admin_popup_page() || popmake_is_admin_popup_theme_page() ) {
@@ -146,6 +154,7 @@ function popmake_load_admin_scripts() {
 			'jquery-ui-position'
 		), POPMAKE_VERSION, true );
 		wp_localize_script( 'popup-maker-site', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+		wp_localize_script( 'popup-maker-site', 'popmake_default_theme', (string) popmake_get_default_popup_theme() );
 	}
 	if ( popmake_is_admin_popup_theme_page() ) {
 		wp_localize_script( 'popup-maker-admin', 'popmake_google_fonts', popmake_get_google_webfonts_list() );
@@ -166,7 +175,7 @@ add_action( 'admin_enqueue_scripts', 'popmake_load_admin_scripts', 100 );
  * @return void
  */
 function popmake_load_admin_styles() {
-	$css_dir = POPMAKE_URL . '/assets/styles/';
+	$css_dir = POPMAKE_URL . '/assets/css/';
 	$suffix  = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.css' : '.min.css';
 	if ( popmake_is_admin_popup_page() || popmake_is_admin_popup_theme_page() ) {
 		wp_enqueue_style( 'popup-maker-site', $css_dir . 'popup-maker-site' . $suffix, false, POPMAKE_VERSION );
