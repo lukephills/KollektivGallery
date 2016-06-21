@@ -19,19 +19,19 @@
   "license": "GPL",
   "devDependencies": {
     "grunt": "~0.4.2",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.11.0",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-uglify": "~0.3.3",
+    "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-autoprefixer": "^2.2.0",
-    "grunt-contrib-cssmin": "^0.11.0",
-    "grunt-contrib-concat": "^0.5.0",
+    "grunt-typescript": "^0.6.1",
     "install": "^0.1.8",
     "load-grunt-tasks": "^3.1.0",
     "npm": "^2.4.1",
-    "typescript": "^1.4.1",
-    "grunt-typescript": "^0.6.1",
-    "grunt-contrib-clean": "^0.6.0"
+    "typescript": "^1.4.1"
   }
 }
