@@ -1,0 +1,15 @@
+// wrap iframe videos in a div.video-container
+.video-container {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 56.34%;
+  height: 0;
+  margin-bottom: 1rem;
+  overflow: hidden;
+
+  // if video isn't widescreen also add .square
+  &.square {
+      padding-bottom: 67.5%;
+      padding-top: 1.5625rem;
+  }
+}
