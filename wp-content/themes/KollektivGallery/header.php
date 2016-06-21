@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title><? wp_title( '|', true, 'right' ); ?></title>
 	    <link rel="shortcut icon" href="<?= get_template_directory_uri(); ?>/favicon.png">
         <? wp_head(); ?>
