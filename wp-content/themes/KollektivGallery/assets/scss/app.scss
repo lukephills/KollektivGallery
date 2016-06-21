@@ -21,7 +21,7 @@
 }
 
 $body-font-family: 'Open Sans', Arial, sans-serif;
-$header-font-family: 'Futura Std Medium', "Futura", Futura, 'Open Sans' Arial, sans-serif;
+$header-font-family: 'Futura Std Medium', 'Futura', 'Open Sans', Arial, sans-serif;
 $h1-font-size: 3rem;
 $paragraph-font-size: 0.9rem;
 $paragraph-line-height: 1.8;
@@ -94,3 +94,12 @@ $small-font-size: 75%;
     "video-modal",
     "entries-sidebar",
     "svg-animations";
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      letter-spacing: 1px;
+    }

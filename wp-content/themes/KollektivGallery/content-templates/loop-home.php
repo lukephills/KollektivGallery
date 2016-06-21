@@ -46,7 +46,8 @@ $postCount = 0;
                      * Get special excerpt if it exists
                      */
                     if (get_field('excerpt')) {
-                        the_field('excerpt');
+
+                        echo substr(get_field('excerpt'), 0, 150) . "...";
                     } else {
                         the_excerpt();
                     }
