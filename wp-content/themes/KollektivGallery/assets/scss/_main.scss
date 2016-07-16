@@ -169,6 +169,9 @@ $row-width-full: 70rem;
 
 .page-title {
     padding-top: 6rem;
+    padding: 6rem 10px 0;
+    max-width: 620px;
+    margin: auto;
     @media #{$medium-up} {
         padding-top: 1rem;
     }
