@@ -1,0 +1,23 @@
+$color-white: #fff;
+$color-black: #000;
+$color-yellow: rgb(255,231,70); // #ffe746
+$color-grey: #cacaca;
+$color-blue: #1172D3;
+$color-light: $color-white;
+$color-dark: $color-black;
+$color-theme: $color-yellow;
+$color-hover-light: $color-white;
+$color-hover-dark: $color-blue; 
+$color-menu-titles: $color-black;
+$color-box-background: $color-yellow;
+
+$footer-height: 80px;
+
+//FONTS
+$header-font-family: Futura;
+
+// Z INDEX
+$z-index-overlay: 100;
+$z-index-menu: 30;
+$z-index-logo: 25;
+$z-index-leader: 20;

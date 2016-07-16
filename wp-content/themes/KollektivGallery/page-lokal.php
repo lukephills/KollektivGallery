@@ -1,6 +1,6 @@
 <?php
 /*
-	Template Name: Artist Interviews
+	Template Name: Lokal Stories
 */
 ?>
 <?php get_header(); ?>

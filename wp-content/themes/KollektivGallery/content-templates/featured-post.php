@@ -8,7 +8,8 @@
 <?
 $args = array(
     'orderby' => 'date',
-    'posts_per_page' => 1
+    'posts_per_page' => 1,
+    'category_name' => 'blog',
 );
 $query = new WP_Query( $args );
 ?>

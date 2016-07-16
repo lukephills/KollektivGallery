@@ -1,0 +1,43 @@
+/*============================================
+                COLOUR STUFF
+ ============================================*/
+::selection {
+    background: lighten($color-yellow, 10%);
+}
+::-moz-selection {
+    background: lighten($color-yellow, 10%);
+}
+
+.background-color  {
+    background: $color-theme;
+}
+.background-light {
+    background: $color-light;
+}
+.background-dark {
+    background: $color-dark;
+}
+
+.text-color {
+    color: $color-theme;
+}
+.text-light {
+    color: $color-light;
+}
+.text-dark {
+    color: $color-dark;
+}
+
+/*  Placeholder styles  */
+::-webkit-input-placeholder {
+    color: #333;
+}
+:-moz-placeholder {
+    color: #333;  // Firefox 18-
+}
+::-moz-placeholder {
+    color: #333;  // Firefox 19+
+}
+:-ms-input-placeholder {
+    color: #333;
+}

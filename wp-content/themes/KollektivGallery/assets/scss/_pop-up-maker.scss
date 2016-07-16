@@ -1,0 +1,17 @@
+
+// Popup maker - plugin
+.popmake {
+    width: 100% !important;
+    .popmake-title {
+        font-family: $header-font-family !important;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
+    }
+    .popmake-content p {
+        margin-bottom: 0 !important;
+        a {
+            font-weight: 800;
+            color: $color-blue !important;
+        }
+    }
+}
