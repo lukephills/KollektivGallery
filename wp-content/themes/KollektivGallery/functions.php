@@ -10,7 +10,7 @@ if (function_exists('add_image_size')) {
 //	add_image_size('featured', 400, 250, true); //name of image, w, h, crop?
 	add_image_size('main-artist-image', 350, 350, true);
 	add_image_size('large-blog-post', 600, 300, true);
-	add_image_size('small-blog-post', 300, 150, true);
+	add_image_size('small-blog-post', 300, 200, true);
 //	add_image_size('small-square', 250, 250, true);
 }
 

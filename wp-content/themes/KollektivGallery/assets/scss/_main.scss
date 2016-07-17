@@ -220,7 +220,7 @@ $row-width-full: 70rem;
     &:nth-child(8n) {
         @media #{$medium-up} {
             .blog-title, .excerpt {
-                // float: right;
+                float: right;
                 text-align: left;
                 padding: 0px 0 0 1rem;
             } 
