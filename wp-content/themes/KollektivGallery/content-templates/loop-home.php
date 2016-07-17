@@ -27,14 +27,11 @@ $postCount = 0;
         <? else: ?>
             <div class="small-12 medium-4 columns blog-item">
         <? endif; ?>
-
-            <? if ( has_post_thumbnail() ): ?>
-                <a href="<? the_permalink(); ?>">
-                    <? the_post_thumbnail('small-blog-post'); ?>
-                </a>
-            <?php endif; ?>
-           
             <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?>">
+                <? if ( has_post_thumbnail() ): ?>
+                    <? the_post_thumbnail('small-blog-post'); ?>
+                <?php endif; ?>
+
                 <h5 class="blog-title"><?php the_title(); ?></h5>
                 <div class="excerpt">
                     <p>
