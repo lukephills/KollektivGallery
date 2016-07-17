@@ -198,14 +198,19 @@ $row-width-full: 70rem;
         @media #{$medium-up} {
             width: 100%;
             margin-bottom: 4rem;
-            .blog-title {
+            .blog-title, .excerpt {
                 width: 33.33%;
-                font-size: 32px;
-                float: left;
+                // float: left;
                 text-align: right;
                 padding: 0px 1rem 0 0;
+            }
+            .blog-title {
                 font-size: 32px;
             } 
+            .excerpt p {
+                font-size: 16px;
+                line-height: 1.5rem;
+            }
             img {
                 width: 65.66%;
                 float: right;
@@ -214,8 +219,8 @@ $row-width-full: 70rem;
     }
     &:nth-child(8n) {
         @media #{$medium-up} {
-            .blog-title {
-                float: right;
+            .blog-title, .excerpt {
+                // float: right;
                 text-align: left;
                 padding: 0px 0 0 1rem;
             } 
@@ -236,7 +241,8 @@ $row-width-full: 70rem;
 
 .excerpt {
     p {
-        color: inherit !important; // stop annoying colour changes
+        // color: inherit !important; // stop annoying colour changes
+        color: #666;
         font-size: 0.8rem;
         margin-bottom: 0.1rem;
         line-height: 1.3rem;

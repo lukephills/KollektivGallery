@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2016-07-17 1:10:18 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2016-07-17 7:11:43 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 @font-face {
@@ -2572,19 +2572,20 @@ a:hover, a:focus, a:active {
   .blog-item:nth-child(4n) {
     width: 100%;
     margin-bottom: 4rem; }
-  .blog-item:nth-child(4n) .blog-title {
+  .blog-item:nth-child(4n) .blog-title, .blog-item:nth-child(4n) .excerpt {
     width: 33.33%;
-    font-size: 32px;
-    float: left;
     text-align: right;
-    padding: 0px 1rem 0 0;
+    padding: 0px 1rem 0 0; }
+  .blog-item:nth-child(4n) .blog-title {
     font-size: 32px; }
+  .blog-item:nth-child(4n) .excerpt p {
+    font-size: 16px;
+    line-height: 1.5rem; }
   .blog-item:nth-child(4n) img {
     width: 65.66%;
     float: right; } }
 @media only screen and (min-width: 40.0625em) {
-  .blog-item:nth-child(8n) .blog-title {
-    float: right;
+  .blog-item:nth-child(8n) .blog-title, .blog-item:nth-child(8n) .excerpt {
     text-align: left;
     padding: 0px 0 0 1rem; }
   .blog-item:nth-child(8n) img {
@@ -2597,7 +2598,7 @@ a:hover, a:focus, a:active {
   margin-bottom: 0.5rem; }
 
 .excerpt p {
-  color: inherit !important;
+  color: #666;
   font-size: 0.8rem;
   margin-bottom: 0.1rem;
   line-height: 1.3rem; }

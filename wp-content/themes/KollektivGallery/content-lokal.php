@@ -6,7 +6,7 @@
 
 <?
 $args = array(
-    'posts_per_page' => 12,
+    'posts_per_page' => 24,
     'category_name' => 'lokal-stories'
     // 'post__not_in' => array($featured_post_id)
 );

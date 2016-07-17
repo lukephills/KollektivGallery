@@ -8,7 +8,7 @@
         
     </div>
 
-<? include( locate_template( 'content-templates/featured-post.php' ) ); ?>
+<!--? include( locate_template( 'content-templates/featured-post.php' ) ); ?-->
 
 <? include( locate_template( 'content-templates/loop-home.php' ) ); ?>
 
