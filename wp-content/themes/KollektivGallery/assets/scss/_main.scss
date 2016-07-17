@@ -179,22 +179,27 @@ $row-width-full: 70rem;
     margin-bottom: 1rem;
     min-height: initial;
     display: inline-block;
+    @media #{$medium-up} {
+        min-height: 14rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .blog-item {
     margin-bottom: 1rem;
     min-height: initial;
     display: inline-block;
+    @media #{$medium-up} {
+        min-height: 14rem;
+        margin-bottom: 2rem;
+    }
 
     .blog-title {
         text-transform: uppercase;
         font-weight: bold;
     }
 
-    @media #{$medium-up} {
-        min-height: 14rem;
-        margin-bottom: 2rem;
-    }
+    
     a:hover .blog-title {
         color: $color-blue;
     }
