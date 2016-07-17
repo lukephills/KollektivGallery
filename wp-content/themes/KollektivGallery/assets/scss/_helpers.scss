@@ -1,0 +1,62 @@
+/*============================================
+                HELPER CLASSES
+ ============================================*/
+.abs {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.table {
+    display: table;
+}
+
+.center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.font-header {
+    font-family: $header-font-family;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.underline {
+    border-bottom: 3px solid;
+    display: inline;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.height100{
+    height: 100%;
+}
+
+// HIDE SCROLL BARS
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0 !important
+}
+.hide-scrollbar { -ms-overflow-style: none; }
+
+p.nocomments {
+    display: none;
+}

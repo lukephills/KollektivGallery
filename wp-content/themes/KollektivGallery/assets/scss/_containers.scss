@@ -1,0 +1,81 @@
+/*============================================
+                CONTAINERS
+ ============================================*/
+
+.image {
+    @include hover {
+        .label, .event-date {
+            background: $color-theme;
+            color: $color-dark;
+        }
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.image-full-width {
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.background-panel {
+    min-height: 500px;
+    height: auto;
+    width: 100%;
+    position: relative;
+
+    @media #{$medium-up} {
+        min-height: 600px;
+    }
+    @media #{$large-up} {
+        min-height: 700px;
+    }
+}
+
+.label {
+    padding: 6px;
+    margin-bottom: $column-gutter/2;
+    @media #{$medium-up} {
+        margin-bottom: $column-gutter;
+    }
+    span {
+        font-family: "Futura", Futura, Arial, sans-serif;
+        text-transform: uppercase;
+    }
+}
+
+.overlay{
+    position: fixed;
+    width:100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    &.show {
+        opacity: 0.9;
+        z-index: $z-index-overlay;
+        transition: opacity 1.6s ease;
+    }
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

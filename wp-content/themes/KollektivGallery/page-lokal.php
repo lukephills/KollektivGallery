@@ -1,21 +1,20 @@
 <?php
 /*
-	Template Name: Artist Interviews
+	Template Name: Lokal Stories
 */
 ?>
 <?php get_header(); ?>
-
-    <div class="text-center page-title">
-
-        <h2 class="underline uppercase">
-            <? if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <? the_title(); ?>
-            <? the_content(); ?>
-            <? endwhile; endif; ?>
-        </h2>
-        
-    </div>
-
+    <? if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+        <div class="row blog-list page-title">
+            <div class="small-12 column">
+                <? the_post_thumbnail('full'); ?>   
+            </div> 
+        </div>
+        <div class="row blog-list">
+            <div class="small-12 column">
+                <? the_content(); ?>
+            </div> 
+        </div>
+    <? endwhile; endif; ?> 
     <?php get_template_part('content', 'lokal'); ?>
-
 <?php get_footer(); ?>

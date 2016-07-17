@@ -1,9 +1,3 @@
-.testAutoPrefixer {
-    display: flex;
-    flex-direction: column-reverse;
-    transition: all 1s ease-out;
-}
-
 @import "settings";
 
 //FONTS
@@ -84,6 +78,7 @@ $small-font-size: 75%;
 //   "foundation/components/offcanvas",
    "../bower_components/foundation/scss/foundation/components/visibility",
 
+    "variables",
     "main",
     "menu",
     "logo",
@@ -94,7 +89,13 @@ $small-font-size: 75%;
     "video-modal",
     "entries-sidebar",
     "svg-animations",
-    "video-embed";
+    "video-embed",
+    "helpers",
+    "color",
+    "containers",
+    "icons",
+    "subscribe",
+    "pop-up-maker";
 
     h1,
     h2,

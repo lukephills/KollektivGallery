@@ -7,6 +7,7 @@
 <?
 $args = array(
     'posts_per_page' => 12,
+    'category_name' => 'blog',
     'post__not_in' => array($featured_post_id)
 );
 $query = new WP_Query( $args );

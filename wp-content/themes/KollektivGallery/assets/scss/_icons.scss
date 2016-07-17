@@ -1,0 +1,56 @@
+
+
+// Kollektiv Go Button //
+.kollektiv-go-button {
+    background: url(assets/images/icons/GO.svg) center center;
+    background-size: 270%;
+    width: 50px;
+    height: 50px;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    @include hover {
+        background: url(assets/images/icons/GO-yellow.svg) center center;
+        background-size: 270%;
+    }
+
+    .sign-up-container & {
+        display: inline-block;
+        height: 40px;
+        padding: 1rem;
+        background-size: 220%;
+
+        @include hover {
+            background: url(assets/images/icons/GO-yellow.svg) center center;
+            background-size: 220%;
+        }
+        .page-template-page-manual &,
+        .page-template-single-manual &,
+        .single-manual & {
+            display: none;
+            @media #{$large-up}{
+                display: inline;
+                position: fixed;
+                bottom: 0.5rem;
+                left: 11.5rem;
+            }
+        }
+    }
+}
+
+// SVG ICONS
+.svg.icon {
+    display: inline;
+    position: absolute;
+    margin: 3px 0 0 5px;
+    svg g {
+        fill: $color-dark;
+    }
+    &:hover svg g {
+        fill: $color-yellow;
+    }
+    &.white svg g {
+        fill: $color-light;
+    }
+}

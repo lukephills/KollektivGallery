@@ -1,28 +1,3 @@
-$color-white: #fff;
-$color-black: #000;
-$color-yellow: rgb(255,231,70); // #ffe746
-$color-grey: #cacaca;
-$color-blue: #1172D3;
-$color-light: $color-white;
-$color-dark: $color-black;
-$color-theme: $color-yellow;
-$color-hover-light: $color-white;
-$color-hover-dark: $color-blue;
-$color-menu-titles: $color-black;
-$color-box-background: $color-yellow;
-
-$footer-height: 80px;
-
-//FONTS
-$header-font-family: Futura;
-
-// Z INDEX
-$z-index-overlay: 100;
-$z-index-menu: 30;
-$z-index-logo: 25;
-$z-index-leader: 20;
-
-
 * {
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -168,9 +143,17 @@ $row-width-full: 70rem;
 
 
 .page-title {
-    padding-top: 6rem;
+    padding: 6rem 10px 0;
+    max-width: 620px;
+    margin: auto;
     @media #{$medium-up} {
         padding-top: 1rem;
+    }
+    .page-template-page-lokal & {
+        padding-top: 5rem;
+        @media #{$medium-up} {
+            padding-top: 1rem;
+        }
     }
 }
 
@@ -191,16 +174,59 @@ $row-width-full: 70rem;
     }
 }
 
+
+.blog-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    a {
+        color: $color-dark;
+        &:hover {
+            color: lighten($color-dark, 10);
+        }
+    }
+}
+
 .blog-item {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    min-height: initial;
     display: inline-block;
-    min-height: 19rem;
-    max-height: 20rem;
+    @media #{$medium-up} {
+        min-height: 14rem;
+        margin-bottom: 2rem;
+    }
+    &:nth-child(4n) { 
+        @media #{$medium-up} {
+            width: 100%;
+            margin-bottom: 4rem;
+            .blog-title {
+                width: 33.33%;
+                font-size: 32px;
+                float: left;
+                text-align: right;
+                padding: 0px 1rem 0 0;
+                font-size: 32px;
+            } 
+            img {
+                width: 65.66%;
+                float: right;
+            }
+        }
+    }
+    &:nth-child(8n) {
+        @media #{$medium-up} {
+            .blog-title {
+                float: right;
+                text-align: left;
+                padding: 0px 0 0 1rem;
+            } 
+            img {
+                float: left;
+            }
+        }
+    }
     img {
         width: 100%;
     }
-
-
 }
 
 .meta {
@@ -433,290 +459,3 @@ $social-media-icon-size: 20px;
     }
 }
 
-/*============================================
-                HELPER CLASSES
- ============================================*/
-.abs {
-    position: absolute;
-}
-
-.relative {
-    position: relative;
-}
-
-.table {
-    display: table;
-}
-
-.center {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right:0;
-    bottom: 0;
-    margin: auto;
-}
-
-.circle {
-    border-radius: 50%;
-}
-
-.font-header {
-    font-family: $header-font-family;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-
-.capitalize {
-    text-transform: capitalize;
-}
-
-.underline {
-    border-bottom: 3px solid;
-    display: inline;
-}
-
-.width100 {
-    width: 100%;
-}
-
-.height100{
-    height: 100%;
-}
-
-// HIDE SCROLL BARS
-.hide-scrollbar::-webkit-scrollbar {
-    width: 0 !important
-}
-.hide-scrollbar { -ms-overflow-style: none; }
-
-
-/*============================================
-                COLOUR STUFF
- ============================================*/
-::selection {
-    background: lighten($color-yellow, 10%);
-}
-::-moz-selection {
-    background: lighten($color-yellow, 10%);
-}
-
-.background-color  {
-    background: $color-theme;
-}
-.background-light {
-    background: $color-light;
-}
-.background-dark {
-    background: $color-dark;
-}
-
-.text-color {
-    color: $color-theme;
-}
-.text-light {
-    color: $color-light;
-}
-.text-dark {
-    color: $color-dark;
-}
-
-
-/*============================================
-                CONTAINERS
- ============================================*/
-
-.image {
-    @include hover {
-        .label, .event-date {
-            background: $color-theme;
-            color: $color-dark;
-        }
-    }
-}
-
-.full-width {
-    width: 100%;
-}
-
-.no-padding-left {
-    padding-left: 0;
-}
-
-.no-padding-right {
-    padding-right: 0;
-}
-
-.image-full-width {
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-
-.background-panel {
-    min-height: 500px;
-    height: auto;
-    width: 100%;
-    position: relative;
-
-    @media #{$medium-up} {
-        min-height: 600px;
-    }
-    @media #{$large-up} {
-        min-height: 700px;
-    }
-}
-
-.label {
-    padding: 6px;
-    margin-bottom: $column-gutter/2;
-    @media #{$medium-up} {
-        margin-bottom: $column-gutter;
-    }
-    span {
-        font-family: "Futura", Futura, Arial, sans-serif;
-        text-transform: uppercase;
-    }
-}
-
-.overlay{
-    position: fixed;
-    width:100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    &.show {
-        opacity: 0.9;
-        z-index: $z-index-overlay;
-        transition: opacity 1.6s ease;
-    }
-}
-
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
-
-
-
-
-
-// Kollektiv Go Button //
-.kollektiv-go-button {
-    background: url(assets/images/icons/GO.svg) center center;
-    background-size: 270%;
-    width: 50px;
-    height: 50px;
-    border: none;
-    display: block;
-    margin: 0 auto;
-    cursor: pointer;
-    @include hover {
-        background: url(assets/images/icons/GO-yellow.svg) center center;
-        background-size: 270%;
-    }
-
-    .sign-up-container & {
-        display: inline-block;
-        height: 40px;
-        padding: 1rem;
-        background-size: 220%;
-
-        @include hover {
-            background: url(assets/images/icons/GO-yellow.svg) center center;
-            background-size: 220%;
-        }
-        .page-template-page-manual &,
-        .page-template-single-manual &,
-        .single-manual & {
-            display: none;
-            @media #{$large-up}{
-                display: inline;
-                position: fixed;
-                bottom: 0.5rem;
-                left: 11.5rem;
-            }
-        }
-    }
-}
-
-// SVG ICONS
-.svg.icon {
-    display: inline;
-    position: absolute;
-    margin: 3px 0 0 5px;
-    svg g {
-        fill: $color-dark;
-    }
-    &:hover svg g {
-        fill: $color-yellow;
-    }
-    &.white svg g {
-        fill: $color-light;
-    }
-}
-
-
-// Popup maker - plugin
-.popmake {
-    width: 100% !important;
-    .popmake-title {
-        font-family: $header-font-family !important;
-        text-transform: uppercase;
-        margin-bottom: 0.3rem;
-    }
-    .popmake-content p {
-        margin-bottom: 0 !important;
-        a {
-            font-weight: 800;
-            color: $color-blue !important;
-        }
-    }
-}
-
-//Shortcodes
-#signup.subscribe-form.shortcode {
-    margin: 0.5rem 0;
-
-    .email {
-        background-color: #fff;
-        display: inline;
-        max-width: 230px;
-        margin: 0;
-    }
-    .subscribe-btn {
-        display: inline;
-        height: 35px;
-        margin: 0;
-        position: absolute;
-        margin-left: 5px;
-    }
-}
-
-
-p.nocomments {
-    display: none;
-}
-
-/*  Placeholder styles  */
-::-webkit-input-placeholder {
-    color: #333;
-}
-:-moz-placeholder {
-    color: #333;  // Firefox 18-
-}
-::-moz-placeholder {
-    color: #333;  // Firefox 19+
-}
-:-ms-input-placeholder {
-    color: #333;
-}

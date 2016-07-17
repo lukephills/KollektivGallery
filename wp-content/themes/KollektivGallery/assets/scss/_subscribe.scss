@@ -1,0 +1,19 @@
+
+//Shortcodes
+#signup.subscribe-form.shortcode {
+    margin: 0.5rem 0;
+
+    .email {
+        background-color: #fff;
+        display: inline;
+        max-width: 230px;
+        margin: 0;
+    }
+    .subscribe-btn {
+        display: inline;
+        height: 35px;
+        margin: 0;
+        position: absolute;
+        margin-left: 5px;
+    }
+}
