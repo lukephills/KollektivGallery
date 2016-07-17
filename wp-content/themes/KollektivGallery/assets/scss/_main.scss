@@ -175,15 +175,22 @@ $row-width-full: 70rem;
 }
 
 
-.blog-title {
-    text-transform: uppercase;
-    font-weight: bold;
+.video-item {
+    margin-bottom: 1rem;
+    min-height: initial;
+    display: inline-block;
 }
 
 .blog-item {
     margin-bottom: 1rem;
     min-height: initial;
     display: inline-block;
+
+    .blog-title {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
     @media #{$medium-up} {
         min-height: 14rem;
         margin-bottom: 2rem;

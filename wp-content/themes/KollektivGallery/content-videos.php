@@ -23,33 +23,28 @@
     <? else: ?>
         <div class="small-12 medium-4 columns video-item video-play-overlay">
     <? endif; ?>
-
-            <? if ( has_post_thumbnail() ): ?>
-                <a href="#" class="video-placeholder" data-url="<?=$youtube_url;?>" title="Play video: <?php the_title_attribute();?>">
+            <a href="#" class="video-placeholder" data-url="<?=$youtube_url;?>" title="Play video: <?php the_title_attribute();?>">
+                <? if ( has_post_thumbnail() ): ?>
                     <? the_post_thumbnail('small-blog-post'); ?>
-                </a>
-            <?php endif; ?>
-            <h5>
-                <a href="#" class="video-placeholder" data-url="<?=$youtube_url;?>" title="Play video: <?php the_title_attribute();?>">
-                    <?php the_title(); ?>
-                </a>
-            </h5>
+                <?php endif; ?>
+                <h5><?php the_title(); ?></h5>
 
-            <div class="excerpt">
-                <p>
-                    <?
-                    /**
-                     * Get special excerpt if it exists
-                     */
-                    if (get_field('excerpt')) {
-                        the_field('excerpt');
-                    } else {
-                        the_excerpt();
-                    }
-                    ?>
-                </p>
-                <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?> - Kollektiv Gallery Blog"><small class="continue-readling-link">More information about the video.</small></a>
-            </div>
+                <div class="excerpt">
+                    <p>
+                        <?
+                        /**
+                        * Get special excerpt if it exists
+                        */
+                        if (get_field('excerpt')) {
+                            the_field('excerpt');
+                        } else {
+                            the_excerpt();
+                        }
+                        ?>
+                    </p>
+                    <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?> - Kollektiv Gallery Blog"><small class="continue-readling-link">Read more about the video.</small></a>
+                </div>
+            </a>
         </div><!-- /.column -->
 
     <?php endwhile; endif; wp_reset_postdata(); ?>

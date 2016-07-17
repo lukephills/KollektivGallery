@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2016-07-17 8:30:03 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2016-07-17 8:36:47 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 @font-face {
@@ -2604,14 +2604,18 @@ a:hover, a:focus, a:active {
 .background-dark .credit a {
   color: #000; }
 
-.blog-title {
-  text-transform: uppercase;
-  font-weight: bold; }
+.video-item {
+  margin-bottom: 1rem;
+  min-height: initial;
+  display: inline-block; }
 
 .blog-item {
   margin-bottom: 1rem;
   min-height: initial;
   display: inline-block; }
+.blog-item .blog-title {
+  text-transform: uppercase;
+  font-weight: bold; }
 @media only screen and (min-width: 40.0625em) {
   .blog-item {
     min-height: 14rem;
