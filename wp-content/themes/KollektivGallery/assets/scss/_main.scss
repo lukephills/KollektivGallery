@@ -178,12 +178,6 @@ $row-width-full: 70rem;
 .blog-title {
     text-transform: uppercase;
     font-weight: bold;
-    a {
-        color: $color-dark;
-        &:hover {
-            color: lighten($color-dark, 10);
-        }
-    }
 }
 
 .blog-item {
@@ -193,6 +187,9 @@ $row-width-full: 70rem;
     @media #{$medium-up} {
         min-height: 14rem;
         margin-bottom: 2rem;
+    }
+    a:hover .blog-title {
+        color: $color-blue;
     }
     &:nth-child(4n) { 
         @media #{$medium-up} {

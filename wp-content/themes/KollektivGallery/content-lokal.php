@@ -30,6 +30,7 @@ $postCount = 0;
             <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?>">
                 <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('small-blog-post'); ?><?php endif; ?>
                 <h5 class="blog-title"><?php the_title(); ?></h5>
+                <div class="blog-item-overlay"></div>
             </a>
         </div><!-- /.column -->
 
