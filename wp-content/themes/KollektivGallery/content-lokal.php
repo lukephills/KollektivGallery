@@ -23,23 +23,14 @@ $postCount = 0;
         } ?>
 
         <? if ($postCount == ($wp_query->post_count - 1)): // LAST POST - add end class to make it float left?>
-            <div class="small-12 medium-4 columns blog-item end">
+        <div class="small-12 medium-4 columns blog-item end">
         <? else: ?>
-            <div class="small-12 medium-4 columns blog-item">
+        <div class="small-12 medium-4 columns blog-item">
         <? endif; ?>
-
-            <? if ( has_post_thumbnail() ): ?>
-                <a href="<? the_permalink(); ?>">
-                    <? the_post_thumbnail('small-blog-post'); ?>
-                </a>
-            <?php endif; ?>
-            <h5 class="blog-title">
-                <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?>">
-                    <?php the_title(); ?>
-                </a>
-            </h5>
-            <p class="meta"><? the_time('F j, Y'); ?> | <?php the_category(', '); ?></p>
-            
+            <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?>">
+                <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('small-blog-post'); ?><?php endif; ?>
+                <h5 class="blog-title"><?php the_title(); ?></h5>
+            </a>
         </div><!-- /.column -->
 
     <? endwhile; endif; wp_reset_postdata(); ?>
