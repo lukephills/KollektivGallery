@@ -8,7 +8,7 @@
     $postCount;
 ?>
 
-<section class="row blog-list">
+<section class="row video-list">
 
     <?php if( $query->have_posts() ) : while( $query->have_posts() ) : $query->the_post(); ?>
 
@@ -19,9 +19,9 @@
     } ?>
 
     <? if ($postCount == ($wp_query->post_count - 1)): // LAST POST - add end class to make it float left ?>
-        <div class="small-12 small-medium-6 medium-4 columns blog-item video-play-overlay end">
+        <div class="small-12 medium-4 columns video-item video-play-overlay end">
     <? else: ?>
-        <div class="small-12 small-medium-6 medium-4 columns blog-item video-play-overlay">
+        <div class="small-12 medium-4 columns video-item video-play-overlay">
     <? endif; ?>
 
             <? if ( has_post_thumbnail() ): ?>

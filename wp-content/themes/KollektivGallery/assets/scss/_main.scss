@@ -57,7 +57,7 @@ $row-width-full: 70rem;
             margin: 0 auto;
         }
     }
-    &.blog-list {
+    &.blog-list, &.video-list {
         max-width: $row-width-blog;
         margin: 40px auto;
     }
