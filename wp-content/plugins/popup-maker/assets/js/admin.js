@@ -6653,7 +6653,7 @@ var PUMCookies;
         .on('submit', '.cookie-editor .pum-form', function (e) {
             var $form = $(this),
                 event = $form.find('input.event').val(),
-                values = $form.serializeObject(),
+                values = $form.pumSerializeObject(),
                 index = parseInt(values.index),
                 $row = index >= 0 ? $('#pum_popup_cookies_list tbody tr').eq(index) : null,
                 template = wp.template('pum-cookie-row'),
@@ -7471,7 +7471,7 @@ var PUMSelect2Fields;
         }
     }
 
-    $.fn.serializeObject = function (options) {
+    $.fn.pumSerializeObject = function (options) {
         $.extend({}, options);
 
         var values = {},
@@ -7993,7 +7993,7 @@ var PUMTriggers;
         .on('submit', '.trigger-editor .pum-form', function (e) {
             var $form = $(this),
                 type = $form.find('input.type').val(),
-                values = $form.serializeObject(),
+                values = $form.pumSerializeObject(),
                 index = parseInt(values.index),
                 $row = index >= 0 ? $('#pum_popup_triggers_list tbody tr').eq(index) : null,
                 template = wp.template('pum-trigger-row'),
@@ -8205,6 +8205,13 @@ var PopMakeAdmin, PUM_Admin;
             $('#title').prop('required', true);
 
             $(document)
+                .on('change', '#popup_theme', function () {
+                    var $this = $(this),
+                        $link = $('#edit_theme_link'),
+                        val = $this.val();
+
+                    $link.attr('href', $link.data('baseurl')+val);
+                })
                 .on('keydown', '#popuptitle', function (event) {
                     var keyCode = event.keyCode || event.which;
                     if (9 === keyCode) {
