@@ -1,8 +1,9 @@
 <? get_header(); ?>
 
 <div class="row page page-title">
-<div class="small-12 columns"></div>
-    <h1><?php the_title(); ?></h1>
+    <div class="small-12 columns">
+        <h1><?php the_title(); ?></h1>
+    </div>
 </div>
 
 <section class="row page">
