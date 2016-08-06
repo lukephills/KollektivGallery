@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-06 10:06:35 PM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-06 10:13:49 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 @font-face {
@@ -2579,7 +2579,6 @@ a:hover, a:focus, a:active {
     float: none; } }
 
 .page-title {
-  padding: 6rem 10px 0;
   max-width: 620px;
   margin: auto; }
 @media only screen and (min-width: 40.0625em) {
@@ -2803,7 +2802,10 @@ article {
 
 .page-title h1 {
   max-width: 580px;
-  margin: 3rem auto; }
+  margin: 3rem auto 1rem; }
+@media only screen and (min-width: 40.0625em) {
+  .page-title h1 {
+    margin: 3rem auto; } }
 
 /* Menu */
 .main-menu-wrap {
