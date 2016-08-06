@@ -202,6 +202,12 @@ $row-width-full: 70rem;
     a:hover .blog-title {
         color: $color-blue;
     }
+
+    .video-embed {
+        padding-bottom: 66.34%;
+        margin-bottom: 0;
+    }
+
     &.featured { 
         @media #{$medium-up} {
             width: 100%;
