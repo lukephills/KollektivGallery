@@ -37,6 +37,19 @@ $ grunt build
   - everything else in `assets/`
 
 
+###
+Console function to replace all missing images' sources to the .com
+```
+function getImages(){
+  var imgs = document.getElementsByTagName('img')
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].src = imgs[i].src.replace('.dev','.com')
+    imgs[i].srcset = imgs[i].srcset.replace('.dev','.com')
+  }
+}
+getImages();
+```
+
 
 ### Todo's
 

@@ -202,7 +202,7 @@ $row-width-full: 70rem;
     a:hover .blog-title {
         color: $color-blue;
     }
-    &:nth-child(4n) { 
+    &.featured { 
         @media #{$medium-up} {
             width: 100%;
             margin-bottom: 4rem;
@@ -224,19 +224,20 @@ $row-width-full: 70rem;
                 float: right;
             }
         }
-    }
-    &:nth-child(8n) {
-        @media #{$medium-up} {
-            .blog-title, .excerpt {
-                float: right;
-                text-align: left;
-                padding: 0px 0 0 1rem;
-            } 
-            img {
-                float: left;
+        &.featured-right {
+            @media #{$medium-up} {
+                .blog-title, .excerpt {
+                    float: right;
+                    text-align: left;
+                    padding: 0px 0 0 1rem;
+                } 
+                img {
+                    float: left;
+                }
             }
         }
     }
+   
     img {
         width: 100%;
     }

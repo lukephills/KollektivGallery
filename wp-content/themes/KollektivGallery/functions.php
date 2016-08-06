@@ -62,7 +62,7 @@ add_action( 'wp_enqueue_scripts', 'femur_theme_styles' );
  * If FEMUR_DEBUG is true we load seperate unminified js files
  * Else load one concatenated minified script file for production
  */
-define( 'FEMUR_JS_DEBUG', true );
+define( 'FEMUR_JS_DEBUG', false );
 
 function femur_theme_js() {
 
