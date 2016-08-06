@@ -1,7 +1,6 @@
 <div class="social-media-follow">
-
     <!-- FACEBOOK -->
-    <a href="https://www.facebook.com/kollektivgallery" target="_blank">
+    <a href="<?= isLokalPage() ? 'https://www.facebook.com/lokalstories/' : 'https://www.facebook.com/kollektivgallery'; ?>" target="_blank">
         <svg id="Facebook"
              width="20px" height="20px" viewBox="0 0 30 30">
             <path id="facebook" fill="#FFFFFF" d="M22,16l1-5l-5,0.001V7c0-1.544,0.784-2,3-2h2V0c0,0-2.05,0-4,0c-4.072,0-7,2.435-7,7v4H7v5h5v14h6
@@ -10,7 +9,7 @@
     </a>
 
 	<!-- INSTAGRAM -->
-	<a href="https://www.instagram.com/kollektivgallery" target="_blank">
+	<a href="<?= isLokalPage() ? 'https://instagram.com/lokal_stories' : 'https://instagram.com/kollektivgallery'; ?>" target="_blank">
 		<svg id="Instagram" x="0px" y="0px"
 		     width="20px" height="20px" viewBox="0 0 97.395 97.395"
 		     >
@@ -23,9 +22,8 @@
 					c10.803,0,19.562-8.485,19.562-18.953C68.351,38.018,59.593,29.533,48.789,29.533z"/>
 		</svg>
 	</a>
-
 	<!-- TWITTER -->
-    <a href="http://www.twitter.com/kollektiv_" target="_blank">
+    <a href="<?= isLokalPage() ? 'https://twitter.com/lokal_stories' : 'https://twitter.com/kollektiv_'; ?>" target="_blank">
         <svg id="Twitter"
              width="20px" height="20px" viewBox="0 0 30 30" >
             <path id="twitter" fill="#FFFFFF" d="M30,6.708C28.895,7.199,27.244,7.851,26,8c1.273-0.762,2.539-2.561,3-4

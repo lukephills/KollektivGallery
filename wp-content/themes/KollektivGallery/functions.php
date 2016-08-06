@@ -256,3 +256,12 @@ function femur_subscribe_shortcode() {
 }
 add_shortcode( 'subscribe', 'femur_subscribe_shortcode' );
 
+
+/**
+ * Checks if this is a lokal stories page
+ * @return string
+ */
+function isLokalPage() {
+	global $post;
+	return ($post->post_name == 'lokalstories' || get_post_type() == 'lokal-stories' );
+}
