@@ -1,9 +1,7 @@
 <? get_header(); ?>
 
-    <div class="text-center page-title">
-        <h2 class="underline uppercase">
-            <?php the_title(); ?>
-        </h2>
+    <div class="page-title">
+        <h1><?php the_title(); ?></h1>
     </div>
 
 <section class="row page">

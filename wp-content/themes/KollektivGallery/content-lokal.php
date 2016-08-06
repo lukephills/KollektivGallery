@@ -7,8 +7,7 @@
 <?
 $args = array(
     'post_type' => 'lokal-post',
-    'posts_per_page' => -1,
-    'category_name' => 'lokal-stories'
+    'posts_per_page' => -1
     // 'post__not_in' => array($featured_post_id)
 );
 $query = new WP_Query( $args );
