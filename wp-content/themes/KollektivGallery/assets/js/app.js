@@ -582,6 +582,14 @@ jQuery(document).ready(function($) {
         $('.flex-video').empty();
     });
 
+    // Inject youtube iframes
+    var $youtubeInlineEmbed = $('.video-inline-embed')
+    var youtubeURL = $youtubeInlineEmbed.data('url');
+    var embedURL = youtubeURL.replace("watch?v=","embed/");
+    var youtubeIframe = '<div class="video-embed"><iframe src="'+embedURL+'" frameborder="0" allowfullscreen></iframe></div>';
+    $youtubeInlineEmbed.prepend(youtubeIframe);
+
+
 
     //
     //var $scrollSection = $('.slide');

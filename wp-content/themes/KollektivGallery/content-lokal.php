@@ -23,10 +23,9 @@ $postCount = 0;
             <div class="small-12 medium-4 columns blog-item featured <?= ($postCount % 8 == 7) ? 'featured-right' : ''; ?>">
 
                 <? if (get_field('lokal_post_type') == 'video'): ?>
-                    <a href="#" class="video-placeholder" data-url="<?= get_field('video_link'); ?>">
-                        <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('large-blog-post'); ?><? endif; ?>
+                    <span class="video-inline-embed" data-url="<?= get_field('video_link'); ?>">
                         <h5 class="blog-title"><?php the_title(); ?></h5>
-                    </a>
+                    </span>
                 <? elseif (get_field('lokal_post_type') == 'podcast'): ?>
                     <a href="#" class="podcast-placeholder" data-url="<?= get_field('podcast_link'); ?>">
                         <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('large-blog-post'); ?><? endif; ?>
@@ -45,8 +44,7 @@ $postCount = 0;
             <div class="small-12 medium-4 columns blog-item">
 
                 <? if (get_field('lokal_post_type') == 'video'): ?>
-                    <a href="#" class="video-placeholder" data-url="<?= get_field('video_link'); ?>">
-                        <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('small-blog-post'); ?><? endif; ?>
+                    <a href="#" class="video-inline-embed" data-url="<?= get_field('video_link'); ?>">
                         <h5 class="blog-title"><?php the_title(); ?></h5>
                     </a>
                 <? elseif (get_field('lokal_post_type') == 'podcast'): ?>

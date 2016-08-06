@@ -219,9 +219,10 @@ $row-width-full: 70rem;
                 font-size: 16px;
                 line-height: 1.5rem;
             }
-            img {
+            img, .video-embed {
                 width: 65.66%;
                 float: right;
+                padding-bottom: 36.34%;
             }
         }
         &.featured-right {
@@ -231,7 +232,7 @@ $row-width-full: 70rem;
                     text-align: left;
                     padding: 0px 0 0 1rem;
                 } 
-                img {
+                img, .video-embed {
                     float: left;
                 }
             }

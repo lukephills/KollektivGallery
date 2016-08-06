@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-07 9:19:38 AM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-07 9:54:27 AM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 @font-face {
@@ -2638,15 +2638,16 @@ a:hover, a:focus, a:active {
   .blog-item.featured .excerpt p {
     font-size: 16px;
     line-height: 1.5rem; }
-  .blog-item.featured img {
+  .blog-item.featured img, .blog-item.featured .video-embed {
     width: 65.66%;
-    float: right; } }
+    float: right;
+    padding-bottom: 36.34%; } }
 @media only screen and (min-width: 40.0625em) {
   .blog-item.featured.featured-right .blog-title, .blog-item.featured.featured-right .excerpt {
     float: right;
     text-align: left;
     padding: 0px 0 0 1rem; }
-  .blog-item.featured.featured-right img {
+  .blog-item.featured.featured-right img, .blog-item.featured.featured-right .video-embed {
     float: left; } }
 .blog-item img {
   width: 100%; }
