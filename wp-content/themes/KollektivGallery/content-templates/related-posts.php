@@ -7,7 +7,7 @@ $related_posts_amount = 2;
 ?>
 
 <section class="small-12 medium-8 large-6 small-centered text-center related-posts full-width">
-    <h4 class="section-strip"><a href="<?= get_site_url().'/blog'; ?>">View Related Posts</a></h4>
+    <h4 class="section-strip">View Related Posts</h4>
 
     <? if ($related_posts): ?>
 
