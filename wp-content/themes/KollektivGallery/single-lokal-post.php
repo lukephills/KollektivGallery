@@ -19,7 +19,7 @@
 
             <? include 'partials/share-post.php'; ?>
 
-            <? get_template_part('content-templates/related', 'posts'); ?>
+            <? get_template_part('content-templates/related', 'lokal'); ?>
 
             <? comments_template(); ?>
 
