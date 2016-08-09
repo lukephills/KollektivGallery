@@ -68,8 +68,3 @@ $postCount = 0;
 
 
 </section>
-
-<div class="overlay overlay-video background-dark"></div>
-<div class="video-container">
-    <div class="flex-video"></div>
-</div>
