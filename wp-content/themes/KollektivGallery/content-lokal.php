@@ -48,10 +48,12 @@ $postCount = 0;
                         <h5 class="blog-title"><?php the_title(); ?></h5>
                     </span>
                 <? elseif (get_field('lokal_post_type') == 'podcast'): ?>
-                    <a href="#" class="podcast-placeholder" data-url="<?= get_field('podcast_link'); ?>">
-                        <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('small-blog-post'); ?><? endif; ?>
+                        <!--iframe width="100%" height="300" style="background-color:transparent; display:block; max-width: 700px;" frameborder="0" allowtransparency="allowtransparency" scrolling="no" src="//embeds.audioboom.com/boos/4925939-invisible-histories-lokal-stories-artists-meet-elijah-winter/embed/v4?eid=AQAAAPEPrVfzKUsA" title="audioBoom player"></iframe-->
+
+                        
+                    <!--span class="video-inline-embed" data-url="<?= get_field('podcast_link'); ?>">
                         <h5 class="blog-title"><?php the_title(); ?></h5>
-                    </a>
+                   </span-->
                 <? else: ?>
                     <a href="<?php the_permalink() ?>"  title="<?php the_title_attribute(); ?>">
                         <? if ( has_post_thumbnail() ): ?><? the_post_thumbnail('small-blog-post'); ?><?php endif; ?>

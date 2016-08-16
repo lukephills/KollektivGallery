@@ -589,6 +589,11 @@ jQuery(document).ready(function($) {
     var youtubeIframe = '<div class="video-embed"><iframe src="'+embedURL+'?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe></div>';
     $youtubeInlineEmbed.prepend(youtubeIframe);
 
+    // Inject audioboom iframes
+    // var $audioboomInlineEmbed = $('.video-inline-embed')
+    // var audioboomIframe = '<div class="video-embed">'+ $youtubeInlineEmbed.data('iframe') +'</div>';
+    // $audioboomInlineEmbed.prepend(audioboomIframe);
+
 
 
     //

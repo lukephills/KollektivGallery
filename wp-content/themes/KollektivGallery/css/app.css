@@ -1,4 +1,4 @@
-/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-07 10:06:21 AM */
+/*! Kollektiv-Legacy 1.0.1 styles.css 2016-08-16 10:59:55 PM */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
 @font-face {
@@ -2751,7 +2751,7 @@ article {
 
 .page-title h1 {
   max-width: 580px;
-  margin: 3rem auto 1rem; }
+  margin: 5rem auto 1rem; }
 @media only screen and (min-width: 40.0625em) {
   .page-title h1 {
     margin: 3rem auto; } }
