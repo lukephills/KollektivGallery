@@ -583,12 +583,19 @@ jQuery(document).ready(function($) {
     });
 
     // Inject youtube iframes
-    var $youtubeInlineEmbed = $('.video-inline-embed')
-    var youtubeURL = $youtubeInlineEmbed.data('url');
-    var embedURL = youtubeURL.replace("watch?v=","embed/");
-    var youtubeIframe = '<div class="video-embed"><iframe src="'+embedURL+'?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe></div>';
-    $youtubeInlineEmbed.prepend(youtubeIframe);
+    var $youtubeInlineEmbeds = $('.video-inline-embed');
 
+    if ($youtubeInlineEmbeds.length) {
+        for (var i = 0; i<$youtubeInlineEmbeds.length; i++){
+            var youtubeURL = $youtubeInlineEmbeds[i].data('url');
+            if (youtubeURL) {
+                var embedURL = youtubeURL.replace("watch?v=","embed/");
+                var youtubeIframe = '<div class="video-embed"><iframe src="'+embedURL+'?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe></div>';
+                $youtubeInlineEmbeds[i].prepend(youtubeIframe);
+            }
+        }
+    }
+    
     // Inject audioboom iframes
     // var $audioboomInlineEmbed = $('.video-inline-embed')
     // var audioboomIframe = '<div class="video-embed">'+ $youtubeInlineEmbed.data('iframe') +'</div>';
