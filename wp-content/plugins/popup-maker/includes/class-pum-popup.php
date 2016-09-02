@@ -294,6 +294,24 @@ if ( ! class_exists( 'PUM_Popup' ) ) {
 				if ( ! $this->conditions ) {
 					$this->conditions = array();
 				}
+
+				// Sanity Check on the values not operand value.
+				foreach ( $this->conditions as $group_key => $group ) {
+
+					foreach ( $group as $key => $condition ) {
+
+						// The condition target doesn't exist. Lets ignore this condition.
+						if ( empty( $condition['target'] ) ) {
+							unset( $this->conditions[ $group_key ][ $key ] );
+							continue;
+						}
+
+						// The not operand value is missing, set it to false.
+						if ( ! isset ( $condition['not_operand'] ) ) {
+							$this->conditions[ $group_key ][ $key ]['not_operand'] = false;
+						}
+					}
+				}
 			}
 
 			return apply_filters( 'pum_popup_get_conditions', $this->conditions, $this->ID );
@@ -404,8 +422,8 @@ if ( ! class_exists( 'PUM_Popup' ) ) {
 		 * @return mixed|void
 		 */
 		public function close_text() {
-			$text = __( '&#215;', 'popup-maker' );
-
+			$text = '&#215;';
+			
 			/** @deprecated */
 			$text = apply_filters( 'popmake_popup_default_close_text', $text, $this->ID );
 

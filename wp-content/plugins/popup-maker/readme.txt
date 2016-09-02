@@ -4,9 +4,9 @@ Author URI: https://wppopupmaker.com/?utm_source=WordPress+Page&utm_medium=Readm
 Plugin URI: https://wppopupmaker.com/?utm_source=WordPress+Page&utm_medium=Readme+Link&utm_campaign=Plugin+URI
 Donate link: 
 Tags: responsive popup, promotion, popover, pop-up, pop over, marketing, lightbox, advertising, conversion, modal, popup, popups
-Requires at least: 3.4
-Tested up to: 4.5.2
-Stable tag: 1.4.11
+Requires at least: 3.6
+Tested up to: 4.6
+Stable tag: 1.4.18
 License: GNU Version 3 or Any Later Version
 
 Easily create attractive popups. Customize nearly every aspect of your popups, from theme & position, to targeting & cookies.
@@ -67,17 +67,6 @@ If you like the plugin and/or support [please rate & review](https://wppopupmake
 Follow us on [Twitter](https://twitter.com/wppopupmaker "Popup Maker on Twitter")!
 Find out more about [Popup Maker](https://wppopupmaker.com?utm_source=WordPress+Page&utm_medium=More+Info+Link&utm_campaign=Home+Page "Popup Maker Website").
 
-= Languages =
-* French (France)   87%
-* Hungarian	        84%
-* Arabic	        84%
-* Italian	        84%
-* Swedish	        84%
-* Danish	        84%
-* Spanish (Spain)	72%
-* Russian	        68%
-* German	        52%
-
 Would you like to help translate the plugin into more languages? [Join our WP-Translations Community](https://translate.wordpress.org/projects/wp-plugins/popup-maker).
 
 == Frequently Asked Questions ==
@@ -100,6 +89,44 @@ There are several common causes for this which include:
 5. Theme every element of your popups to blend perfectly into your site: Background Overlay, Popup Container, Close Button, Google Fonts & much more. All in all, customize your popup theme with over 60 options!
 
 == Changelog ==
+
+= v1.4.18 - 8/15/2016 =
+* Fix: Bug with PHP 5.2 compatibility.
+* Fix: Added missing post_type index condition callback.
+
+= v1.4.17 - 8/14/2016 =
+* Fix: Bug caused by using return value in write context.
+
+= v1.4.16 - 8/14/2016 =
+* Feature: New Condition: Pages: With Template. Thanks @cedmund.
+* Feature: Option to Disable reposition on window resize/scroll.
+* Improvement: Enable Visual Composer for Popups by default (VC 4.8+).
+* Improvement: Replaced usage of gif hex code with loading of an actual tracking gif to prevent security scanners from throwing false positives.
+* Improvement: Changed default analytics response with a 204 no content heading, saving the need to load & return a tracking gif.
+* Fix: Missing condition value bug fixed by adding sanity checks to conditions on get.
+* Fix: Auto Height checkbox wouldn't stay unchecked.
+* Fix: CSS class pum-open-overlay wasn't being removed from HTML element on popup close causing issues for next popup.
+* Fix: Error in JS due to shortcodes: Uncaught Error: Syntax error, unrecognized expression.
+* Fix: Issue where some custom post types not working with conditions.
+
+= v1.4.15 - 7/20/2016 =
+* Improvement: Only showed the aria-label attribute if the label will be shown.
+* Tweak: Updated the Freemius SDK.
+* Tweak: Updated the #popmake-{ID} selector to work at the end of a link.
+* Fix: Bug where stackable popups would lose their scroll bar after one was closed.
+
+= v1.4.14 - 7/14/2016 =
+* Feature: Links with the url #popmake-{ID} will now trigger a popup when clicked. Links with this href will work similar to elements with the popmake-{ID} class.
+
+= v1.4.13 - 6/26/2016 =
+* Feature: Added 12 of the most commonly needed BuddyPress content types & targeting conditions. Target any BP content type. Now full support for BuddyPress.
+* Tweak: Moved a few functions from the plugins_loaded action to the init action for minor compatibility benefits.
+* Tweak: Removed Popup & Popup Theme Meta Revisioning as it adds unneeded clutter to the DB.
+
+= v1.4.12 - 6/24/2016 =
+* Improvement: Reduced translatable strings from 569 total to 439 which is about a 23% reduction which will reduce work for our translators.
+* Tweak: Removed the welcome page and associated CSS, images etc. This cleans up some useless strings for translation.
+* Fix: Bug where add_new cookie wasn't properly replaced for the first trigger.
 
 = v1.4.11 - 6/10/2016 =
 * Feature: New conditions for targeting posts & taxonomy by ID.
