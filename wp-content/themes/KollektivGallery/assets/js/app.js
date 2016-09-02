@@ -587,11 +587,11 @@ jQuery(document).ready(function($) {
 
     if ($youtubeInlineEmbeds.length) {
         for (var i = 0; i<$youtubeInlineEmbeds.length; i++){
-            var youtubeURL = $youtubeInlineEmbeds[i].data('url');
+            var youtubeURL = $($youtubeInlineEmbeds[i]).data('url');
             if (youtubeURL) {
                 var embedURL = youtubeURL.replace("watch?v=","embed/");
                 var youtubeIframe = '<div class="video-embed"><iframe src="'+embedURL+'?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe></div>';
-                $youtubeInlineEmbeds[i].prepend(youtubeIframe);
+                $($youtubeInlineEmbeds[i]).prepend(youtubeIframe);
             }
         }
     }
