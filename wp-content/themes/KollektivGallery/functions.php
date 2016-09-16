@@ -246,7 +246,7 @@ require( 'wysiwig-editor-buttons/extra-wysiwig.php' );
  */
 function femur_subscribe_shortcode() {
 
-	$html = '<form id="signup" action="http://kollektivgallery.us7.list-manage.com/subscribe/post?u=20e49663c93adc0174c86ea9e&amp;id=746455a945" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate subscribe-form shortcode" target="_blank" novalidate>
+	$html = '<form id="signup" action="//kollektivgallery.us7.list-manage.com/subscribe/post?u=20e49663c93adc0174c86ea9e&amp;id=746455a945" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate subscribe-form shortcode" target="_blank" novalidate>
 
                 <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email address" required>
                     <input class="subscribe-btn kollektiv-go-button" type="submit" value="" name="subscribe" id="mc-embedded-subscribe">
