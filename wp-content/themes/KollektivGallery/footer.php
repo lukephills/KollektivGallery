@@ -20,7 +20,7 @@
 	</div><!-- /.container -->
 
 <!--	TODO:		THIS IS TEMPORARY-->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
 
 
 	<?php wp_footer(); ?>
